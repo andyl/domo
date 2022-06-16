@@ -1,2 +1,1 @@
-# domo
-Pomodoro Timer
+# Domo.Umbrella
