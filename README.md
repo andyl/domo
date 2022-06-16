@@ -1,1 +1,3 @@
-# Domo.Umbrella
+# Domo
+
+A Pomodoro timer app.
