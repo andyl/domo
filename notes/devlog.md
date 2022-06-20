@@ -3,7 +3,6 @@
 ## Roadmap
 
 Basics
-- [ ] milligram CSS 
 - [ ] accounts & auth 
 - [ ] `phoenix_live_editable`
 
@@ -66,6 +65,10 @@ Learnings
 
 - [x] Create Domo Repo 
 - [x] Create Domo Umbrella App
+
+## 2022 Jun 20 Mon
+
+- [x] milligram CSS 
 
 ## Next Steps
 
