@@ -3,7 +3,7 @@
 ## Roadmap
 
 Basics
-- [ ] accounts & auth 
+- [x] accounts & auth 
 - [ ] `phoenix_live_editable`
 
 Basics
@@ -68,11 +68,19 @@ Learnings
 
 ## 2022 Jun 20 Mon
 
-- [x] milligram CSS 
+- [x] Milligram CSS 
+- [x] Build Auth 
+
+## 2022 Jun 21 Tue
+
+- [x] Build setup 
+- [x] Add timer migration 
+
+- [ ] Build timer page 
 
 ## Next Steps
 
-- [ ] Build Auth 
+- [ ] Do `phoenix live_view` book 
 
 - [ ] Static page: Get link redirects working 
 - [ ] Static page: Get history working 

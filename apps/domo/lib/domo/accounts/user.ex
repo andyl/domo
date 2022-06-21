@@ -3,6 +3,7 @@ defmodule Domo.Accounts.User do
   import Ecto.Changeset
 
   schema "users" do
+    field :uname, :string
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
@@ -30,7 +31,7 @@ defmodule Domo.Accounts.User do
   """
   def registration_changeset(user, attrs, opts \\ []) do
     user
-    |> cast(attrs, [:email, :password])
+    |> cast(attrs, [:uname, :email, :password])
     |> validate_email()
     |> validate_password(opts)
   end
@@ -136,5 +137,12 @@ defmodule Domo.Accounts.User do
     else
       add_error(changeset, :current_password, "is not valid")
     end
+  end
+
+  @doc """
+  Generate a password hash.  Useful for seed generation.
+  """
+  def pwd_hash(pass) do
+    Bcrypt.hash_pwd_salt(pass)
   end
 end

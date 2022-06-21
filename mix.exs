@@ -39,7 +39,7 @@ defmodule Domo.Umbrella.MixProject do
   defp aliases do
     [
       # run `mix setup` in all child apps
-      setup: ["cmd mix setup"]
+      setup: ["ecto.drop", "ecto.create", "ecto.migrate", "run apps/domo/priv/repo/seeds.exs"]
     ]
   end
 end
