@@ -13,8 +13,6 @@ defmodule Termato.Application do
 
     init()
 
-    IO.puts "TERMATOSTART"
-
     children = [
       # HttpSupervisor is dynamic - allows HttpServer to be turned on and off
       {Termato.HttpSupervisor, []},

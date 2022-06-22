@@ -24,6 +24,12 @@ defmodule DomoWeb.Router do
     get "/count", PageController, :count
   end
 
+  scope "/", DomoWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live "/test1", Test1Live
+  end
+
   scope "/base", DomoWeb do
     pipe_through :browser
     get "/",               BaseController, :secs

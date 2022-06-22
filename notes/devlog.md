@@ -3,7 +3,6 @@
 ## Roadmap
 
 Basics
-- [x] accounts & auth 
 - [ ] `phoenix_live_editable`
 
 Basics
@@ -75,8 +74,7 @@ Learnings
 
 - [x] Build setup 
 - [x] Add timer migration 
-
-- [ ] Build timer page 
+- [x] Build timer page 
 
 ## Next Steps
 

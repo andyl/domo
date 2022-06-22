@@ -2,7 +2,7 @@
   <head>
   </head>
   <body>
-    <h1>TERMATO HTML</h1>
+    <h1>TERMATA HTML</h1>
     <%= secs %> seconds
     <p>
     <a href="/set_mins/25?redirect=html">25 mins (tomato task)</a> | 
