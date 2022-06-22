@@ -20,7 +20,20 @@ defmodule DomoWeb.Router do
   scope "/", DomoWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/",      PageController, :index
+    get "/count", PageController, :count
+  end
+
+  scope "/base", DomoWeb do
+    pipe_through :browser
+    get "/",               BaseController, :secs
+    get "/raw",            BaseController, :secs
+    get "/mins",           BaseController, :mins
+    get "/secs",           BaseController, :secs
+    get "/secs_to_s",      BaseController, :secs_to_s
+    get "/decrement",      BaseController, :decrement
+    get "/set_secs/:secs", BaseController, :set_secs
+    get "/set_mins/:mins", BaseController, :set_mins
   end
 
   # Other scopes may use custom stacks.

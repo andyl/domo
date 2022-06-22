@@ -1,0 +1,112 @@
+<html>
+  <head>
+    <title id='title'>TERMATO</title>
+    <meta charset="utf-8"/>
+    <style>
+      td {
+        text-align: center; 
+      }
+      .menu td {
+        padding: 40px;
+      }
+      .history td {
+        padding-left: 30px;
+        padding-right: 30px;
+        text-align: right;
+      }
+      #display {
+        padding-top: 30px;
+      }
+      .green {
+        color: green;
+      }
+      .yellow {
+        background: black; 
+        color: yellow;
+      }
+      .magenta {
+        background: black; 
+        color: magenta;
+      }
+      .red {
+        background: black; 
+        color: red;
+      }
+      .text {
+        padding: 5px 10px 5px 10px;
+      }
+      hr {
+        margin-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <center>
+    <h1>TERMATZ</h1>
+    <h2 id="display"></h2>
+    <p>
+    <table class="menu">
+      <tr>
+        <td>
+          <a href="/set_mins/25?redirect=live">25 mins</a><br/>tomato task 
+        </td>
+        <td>
+          <a href="/set_mins/15?redirect=live">15 mins</a><br/>long break - after 4 tasks
+        </td>
+        <td>
+          <a href="/set_mins/5?redirect=live">5 mins</a><br/>short break - between tasks
+        </td>
+        <td>
+          <a href="/set_secs/5?redirect=live">5 secs</a><br/>test
+        </td>
+      </tr>
+    </table>
+    <hr>
+    <table class="history">
+      <tr><th>Date</th><th>Remaining</th><th>Reset</th></tr>
+      <%= for [x, y, z] <- history do %>
+        <tr>
+          <td><%= x %></td>
+          <td><%= y %></td>
+          <td><%= z %></td>
+        </tr>
+      <% end %>
+    </table>
+    </center>
+
+    <script>
+        console.log("JAVASCRIPT INIT"); 
+        const setupWs = () => {
+            let ws = new WebSocket("ws://" + window.location.host + "/sock");
+            var heartbeat;
+            ws.addEventListener("open", () => {
+                    console.log("WEBSOCK CONNECTED");
+                    heartbeat = setInterval(() => { ws.send('{"type": "HEARTBEAT"}')}, 30000)
+                  });
+            ws.addEventListener("message", event => {
+                    let data = JSON.parse(event.data); 
+                    if (data["type"] == "TICK") {
+                      let secs = data["secs"];
+                      let text = data["text"]; 
+                      let klas = data["klas"]; 
+                      let code = secs > 0 ? "8595" : "8593"; 
+                      let html = `<span class='text ${klas}'>${text}</span>`; 
+                      let titl = `TERMATO &#${code}; ${text}`; 
+                      document.getElementById("title").innerHTML = titl; 
+                      document.getElementById("display").innerHTML = html; 
+                    } 
+                  }); 
+            ws.addEventListener("close", event => {
+                    console.log("WEBSOCK CLOSE")
+                    console.log(event);
+                    clearInterval(heartbeat); 
+                    document.getElementById("title").innerHTML = "TERMATO (Server Down)"
+                    document.getElementById("display").innerHTML = "<span class='text red'>SERVER DOWN</span"
+                    setTimeout(() => { console.log("CONNECT RETRY"); setupWs(); }, 10000)
+                  }); 
+              }; 
+        setupWs(); 
+    </script>
+  </body>
+</html>
+

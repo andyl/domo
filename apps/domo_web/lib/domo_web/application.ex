@@ -7,6 +7,7 @@ defmodule DomoWeb.Application do
 
   @impl true
   def start(_type, _args) do
+    IO.puts "DOMOWEBSTART"
     children = [
       # Start the Telemetry supervisor
       DomoWeb.Telemetry,
