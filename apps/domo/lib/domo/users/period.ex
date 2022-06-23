@@ -8,6 +8,7 @@ defmodule Domo.Users.Period do
     field :seconds, :integer
     field :start_at, :naive_datetime
     field :status, :string
+    field :sequence, :integer
     field :tags, :string
     field :title, :string
     field :user_id, :id
@@ -18,7 +19,7 @@ defmodule Domo.Users.Period do
   @doc false
   def changeset(period, attrs) do
     period
-    |> cast(attrs, [:title, :seconds, :start_at, :end_at, :status, :note, :tags])
-    |> validate_required([:title, :seconds, :start_at, :end_at, :status, :note, :tags])
+    |> cast(attrs, [:title, :sequence, :seconds, :start_at, :end_at, :status, :note, :tags])
+    |> validate_required([:title, :sequence, :seconds, :start_at, :end_at, :status, :note, :tags])
   end
 end

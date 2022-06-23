@@ -18,7 +18,7 @@ Repo.delete_all(Accounts.User)
 Repo.delete_all(Users.Interval)
 Repo.delete_all(Users.Period)
 
-Repo.insert(%Accounts.User{
+{:ok, user1} = Repo.insert(%Accounts.User{
   uname: "aaa",
   email: "aaa@aaa.com",
   hashed_password: Accounts.User.pwd_hash("123456789012"),
@@ -38,3 +38,5 @@ Repo.insert(%Accounts.User{
   hashed_password: Accounts.User.pwd_hash("123456789012")
   }
 )
+
+Users.start_user_period(user1.id, 25)

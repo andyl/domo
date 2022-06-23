@@ -25,6 +25,10 @@ Analytics & Invoicing
 - [ ] Add analytics
 - [ ] Add invoice generation
 
+Alt
+- [ ] Integrate with Atree 
+- [ ] Messaging Integration 
+
 CLI 
 - [ ] Elixir Client with `phoenix_gen_socket_client` 
 - [ ] Add websocket server with token auth 
@@ -76,12 +80,22 @@ Learnings
 - [x] Add timer migration 
 - [x] Build timer page 
 
+## 2022 Jun 22 Wed
+
+- [x] Do `phoenix live_view` book 
+  Generators, Forms, Modals, Function Components, Live Components, SVGs/Contex
+- [x] Make liveview page  
+
+## 2022 Jun 23 Thu
+
+- [x] Write context functions for periods
+
 ## Next Steps
 
-- [ ] Do `phoenix live_view` book 
+- [ ] Write liveview page for periods 
+- [ ] Get update links working 
+- [ ] Get period edit functions working 
 
-- [ ] Static page: Get link redirects working 
-- [ ] Static page: Get history working 
 - [ ] Get client working  
 
 - [ ] Add release 

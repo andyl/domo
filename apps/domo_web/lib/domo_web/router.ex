@@ -7,10 +7,14 @@ defmodule DomoWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {DomoWeb.LayoutView, :root}
+    plug :put_root_layout, {DomoWeb.LayoutView, :root_base}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
     plug :fetch_current_user
+  end
+
+  pipeline :live_layout do
+    plug :put_root_layout, {DomoWeb.LayoutView, :root_live}
   end
 
   pipeline :api do
@@ -28,6 +32,11 @@ defmodule DomoWeb.Router do
     pipe_through [:browser, :require_authenticated_user]
 
     live "/test1", Test1Live
+  end
+
+  scope "/wlog", DomoWeb do
+    pipe_through [:browser, :live_layout, :require_authenticated_user]
+    live "/", WlogLive
   end
 
   scope "/base", DomoWeb do
