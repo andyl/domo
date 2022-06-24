@@ -1,5 +1,33 @@
 <div>
-  HELLO WORLD TABLE
-  <table>
-  </table>
+  <section class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <.start_link mins="25" label="long period" />
+    <.start_link mins="15" label="short period" />
+    <.start_link mins="5" label="break" />
+    <.start_link secs="5" label="test" />
+  </section>
+
+  <div style="border-bottom: 1px solid black; margin: 10px;"></div>
+
+  <section class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>seconds</th>
+          <th>started at</th>
+          <th>status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for p <- @periods do %>
+          <tr>
+            <td><%= p.sequence %></td>
+            <td><%= p.seconds |> Util.Seconds.to_s() %></td>
+            <td><%= p.inserted_at |> Calendar.strftime("%b-%d %H:%M") %></td>
+            <td><%= p.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
 </div>

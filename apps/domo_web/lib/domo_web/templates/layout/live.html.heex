@@ -1,18 +1,13 @@
 <main class="wrapper">
   <nav class="navigation">
+
     <section class="container" style="display: flex; justify-content: space-between; align-items: center;">
       <a class="navigation-title" href="/wlog">DOMO</a>
       <div>COUNT</div>
       <div><%= @current_user.uname %></div>
     </section>
     <div style="border-bottom: 1px solid black; margin: 10px;"></div>
-    <section class="container" style="display: flex; justify-content: space-between; align-items: center;">
-      <div>25 mins</div>
-      <div>15 mins</div>
-      <div>5 mins</div>
-      <div>5 secs</div>
-    </section>
-    <div style="border-bottom: 1px solid black; margin: 10px;"></div>
+
   </nav>
 
   <section class="container">
@@ -25,8 +20,8 @@
       phx-click="lv:clear-flash"
       phx-value-key="error"><%= live_flash(@flash, :error) %></p>
 
-    <%= @inner_content %>
-
   </section>
+
+  <%= @inner_content %>
 
 </main>

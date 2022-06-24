@@ -93,8 +93,9 @@ Learnings
 ## Next Steps
 
 - [ ] Write liveview page for periods 
-- [ ] Get update links working 
-- [ ] Get period edit functions working 
+- [ ] Get period update links working 
+- [ ] Get period edit functions working with PLE
+- [ ] Get tests working with superwatch 
 
 - [ ] Get client working  
 
