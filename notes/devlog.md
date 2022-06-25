@@ -9,6 +9,9 @@ Basics
 - [ ] Underline on date boundaries 
 - [ ] Add colored favicons (green, yellow, magenta, red)
 
+Details 
+- [ ] Use UTC time in database / adjust for local TZ 
+
 History
 - [ ] Add comments to History (Tags, Title, Date, Remaining, Reset, Notes)
 - [ ] Server support 
@@ -89,19 +92,30 @@ Learnings
 ## 2022 Jun 23 Thu
 
 - [x] Write context functions for periods
+- [x] Write liveview page for periods 
+
+## 2022 Jun 24 Fri
+
+- [x] Add counter GenServer
+- [x] Get PubSub working 
+- [x] Get period update links working 
 
 ## Next Steps
 
-- [ ] Write liveview page for periods 
-- [ ] Get period update links working 
-- [ ] Get period edit functions working with PLE
 - [ ] Get tests working with superwatch 
+- [ ] Get tests for counter working 
+
+- [ ] Update title 
+- [ ] Update CSS formatting 
+- [ ] Add alert bell 
+
+- [ ] Add release 
+- [ ] Deploy to lark 
+
+- [ ] Get period edit functions working with PLE
 
 - [ ] Get client working  
 
-- [ ] Add release 
-
-- [ ] Get tests for counter working 
 - [ ] Remove V1
 - [ ] Remove termato 
 

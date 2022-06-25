@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title id='title'>TERMATA</title>
+    <title id='title'>TERMATO</title>
     <meta charset="utf-8"/>
     <style>
       td {
@@ -42,7 +42,7 @@
   </head>
   <body>
     <center>
-    <h1>TERMATA</h1>
+    <h1>TERMATO</h1>
     <h2 id="display"></h2>
     <p>
     <table class="menu">
@@ -89,9 +89,12 @@
                       let secs = data["secs"];
                       let text = data["text"]; 
                       let klas = data["klas"]; 
-                      let code = secs > 0 ? "8595" : "8593"; 
                       let html = `<span class='text ${klas}'>${text}</span>`; 
-                      let titl = `TERMATA &#${code}; ${text}`; 
+                      // let code = secs > 0 ? "8595" : "8593"; 
+                      // let titl = `TERMATO &#${code}; ${text}`; 
+                      let tt0  = `TERMATO ${text}`; 
+                      let tt1  = `TERMATO <${text}>`; 
+                      let titl = secs > 0 ? tt0 : tt1
                       document.getElementById("title").innerHTML = titl; 
                       document.getElementById("display").innerHTML = html; 
                     } 
