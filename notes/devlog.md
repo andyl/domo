@@ -5,12 +5,17 @@
 Basics
 - [ ] `phoenix_live_editable`
 
+Styling 
+- [ ] Add JS effect to link (25 mins / 15 mins / 5 mins / 5 secs)
+- [ ] Copy timer styles from TERMATO
+
 Basics
 - [ ] Underline on date boundaries 
 - [ ] Add colored favicons (green, yellow, magenta, red)
 
-Details 
+Features
 - [ ] Use UTC time in database / adjust for local TZ 
+- [ ] Add an archive feature 
 
 History
 - [ ] Add comments to History (Tags, Title, Date, Remaining, Reset, Notes)
@@ -100,14 +105,18 @@ Learnings
 - [x] Get PubSub working 
 - [x] Get period update links working 
 
+## 2022 Jun 25 Sat
+
+- [x] Add live title 
+- [x] Add alert bell 
+
 ## Next Steps
+
+- [ ] Update CSS formatting 
+- [ ] Fix time zone
 
 - [ ] Get tests working with superwatch 
 - [ ] Get tests for counter working 
-
-- [ ] Update title 
-- [ ] Update CSS formatting 
-- [ ] Add alert bell 
 
 - [ ] Add release 
 - [ ] Deploy to lark 

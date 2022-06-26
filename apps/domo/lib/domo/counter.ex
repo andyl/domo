@@ -87,7 +87,12 @@ defmodule Domo.Counter do
 
   # ----- helpers
 
+  defp alert do
+    Task.async(fn -> System.cmd("play", ["ring", "&"]) ; Process.sleep(1000); end)
+  end
+
   defp broadcast(userid, secs) do
+    if secs == 0, do: alert()
     Phoenix.PubSub.broadcast(Domo.PubSub, userid, {"tick", secs})
   end
 

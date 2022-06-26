@@ -16,6 +16,7 @@ defmodule DomoWeb.WlogLive do
       :ok,
       assign(
         socket,
+        sec_str: "",
         s_count: 0,
         page_title: "Domo",
         session_id: session["live_socket_id"],
@@ -40,18 +41,26 @@ defmodule DomoWeb.WlogLive do
   end
 
   def handle_info({"tick", secs}, socket) do
-    {:noreply, assign(socket, s_count: secs, page_title: title(secs) )}
+    opts = [
+      s_count: secs,
+      sec_str: sec_to_str(secs),
+      page_title: title(secs)
+    ]
+    {:noreply, assign(socket, opts)}
   end
 
   # ----- view helpers
 
-  def title(secs) when secs < 0 do
-    str = secs |> Util.Seconds.to_s()
-    "Domo <#{str}>"
+  def sec_to_str(secs) when secs < 0 do
+    "<#{Util.Seconds.to_s(secs)}>"
+  end
+
+  def sec_to_str(secs) do
+    Util.Seconds.to_s(secs)
   end
 
   def title(secs) do
-    str = secs |> Util.Seconds.to_s()
+    str = secs |> sec_to_str()
     "Domo #{str}"
   end
 
