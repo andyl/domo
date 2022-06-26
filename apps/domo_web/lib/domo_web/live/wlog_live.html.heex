@@ -12,6 +12,7 @@
         <tr>
           <th>#</th>
           <th>period</th>
+          <th>headline</th>
           <th>started at</th>
           <th>status</th>
         </tr>
@@ -21,6 +22,7 @@
           <tr>
             <td><%= p.sequence %></td>
             <td><%= p.seconds |> Domo.Interval.short_label_for() %></td> 
+            <td>na</td>
             <td><%= p.inserted_at |> Calendar.strftime("%b-%d %H:%M") %></td>
             <td><%= p.status %></td>
           </tr>

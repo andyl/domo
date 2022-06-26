@@ -115,14 +115,15 @@ Learnings
 ## Next Steps
 
 - [ ] Fix time zone
+- [ ] Get period edit functions working with PLE
+
+- [ ] Broadcast: tick-1, startperiod-1, editheadline-1
 
 - [ ] Get tests working with superwatch 
 - [ ] Get tests for counter working 
 
 - [ ] Add release 
 - [ ] Deploy to lark 
-
-- [ ] Get period edit functions working with PLE
 
 - [ ] Get client working  
 
