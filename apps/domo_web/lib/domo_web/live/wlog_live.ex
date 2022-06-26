@@ -17,6 +17,7 @@ defmodule DomoWeb.WlogLive do
       assign(
         socket,
         sec_str: "",
+        sec_klas: "green",
         s_count: 0,
         page_title: "Domo",
         session_id: session["live_socket_id"],
@@ -44,6 +45,7 @@ defmodule DomoWeb.WlogLive do
     opts = [
       s_count: secs,
       sec_str: sec_to_str(secs),
+      sec_klas: secs |> Util.Seconds.klas(),
       page_title: title(secs)
     ]
     {:noreply, assign(socket, opts)}
@@ -56,7 +58,7 @@ defmodule DomoWeb.WlogLive do
   end
 
   def sec_to_str(secs) do
-    Util.Seconds.to_s(secs)
+    "#{Util.Seconds.to_s(secs)}"
   end
 
   def title(secs) do

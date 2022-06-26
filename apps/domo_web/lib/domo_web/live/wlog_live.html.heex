@@ -1,10 +1,9 @@
 <div>
 
   <section class="container" style="padding: 10px; background-color: lightgray; display: flex; justify-content: space-between; align-items: center;">
-    <.start_link mins="25" label="tomato task" />
-    <.start_link mins="15" label="long break - after 4 tasks" />
-    <.start_link mins="5" label="short break - between tasks" />
-    <.start_link secs="5" label="test" />
+    <%= for int <- Domo.Interval.all() do %> 
+      <.start_link text={int.text} label={int.label} secs={int.seconds} />
+    <% end %>
   </section>
 
   <section class="container">
@@ -12,7 +11,7 @@
       <thead>
         <tr>
           <th>#</th>
-          <th>time</th>
+          <th>period</th>
           <th>started at</th>
           <th>status</th>
         </tr>
@@ -21,7 +20,7 @@
         <%= for p <- @periods do %>
           <tr>
             <td><%= p.sequence %></td>
-            <td><%= p.seconds |> Util.Seconds.to_s() %></td>
+            <td><%= p.seconds |> Domo.Interval.short_label_for() %></td> 
             <td><%= p.inserted_at |> Calendar.strftime("%b-%d %H:%M") %></td>
             <td><%= p.status %></td>
           </tr>

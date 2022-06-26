@@ -109,10 +109,11 @@ Learnings
 
 - [x] Add live title 
 - [x] Add alert bell 
+- [x] Use label for time-table
+- [x] Update CSS formatting 
 
 ## Next Steps
 
-- [ ] Update CSS formatting 
 - [ ] Fix time zone
 
 - [ ] Get tests working with superwatch 

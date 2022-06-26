@@ -3,8 +3,10 @@
 
     <section class="container" style="margin-top: 5px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
       <div>Domo</div>
-      <div style="text-align: center;">
-        <%= @sec_str %> 
+      <div class={@sec_klas} style="text-align: center; padding: 0 10px 0 10px;">
+        <b>
+          <%= @sec_str %> 
+        </b>
       </div>
       <div><%= @current_user.uname %></div>
     </section>
