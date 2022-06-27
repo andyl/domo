@@ -2,12 +2,14 @@ defmodule Domo.Accounts.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :utc_datetime]
+
   schema "users" do
     field :uname, :string
     field :email, :string
     field :password, :string, virtual: true, redact: true
     field :hashed_password, :string, redact: true
-    field :confirmed_at, :naive_datetime
+    field :confirmed_at, :utc_datetime
 
     timestamps()
   end

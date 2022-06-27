@@ -39,4 +39,4 @@ Repo.insert(%Accounts.User{
   }
 )
 
-Users.start_user_period(user1.id, 25)
+Users.start_user_period(user1.id, 5)

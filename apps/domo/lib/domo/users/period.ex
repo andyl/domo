@@ -2,12 +2,14 @@ defmodule Domo.Users.Period do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :utc_datetime]
+
   schema "periods" do
-    field :end_at, :naive_datetime
+    field :end_at, :utc_datetime
     field :headline, :string
     field :notes, :string
     field :seconds, :integer
-    field :start_at, :naive_datetime
+    field :start_at, :utc_datetime
     field :status, :string
     field :sequence, :integer
     field :tags, :string

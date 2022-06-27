@@ -10,7 +10,7 @@ defmodule Domo.Repo.Migrations.CreateUsersAuthTables do
       add :uname, :citext, null: false
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
-      add :confirmed_at, :naive_datetime
+      add :confirmed_at, :utc_datetime
       timestamps()
     end
 
@@ -49,8 +49,8 @@ defmodule Domo.Repo.Migrations.CreateUsersAuthTables do
       add :headline, :string
       add :seconds, :integer
       add :sequence, :integer
-      add :start_at, :naive_datetime
-      add :end_at, :naive_datetime
+      add :start_at, :utc_datetime
+      add :end_at, :utc_datetime
       add :status, :string
       add :notes, :string
       add :tags, :string

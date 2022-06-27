@@ -112,10 +112,19 @@ Learnings
 - [x] Use label for time-table
 - [x] Update CSS formatting 
 
+## 2022 Jun 26 Sun 
+
+- [x] Study DateTime 
+- [x] Study JS Hooks 
+
+## 2022 Jun 27 Mon
+
+- [x] Fix time zone
+
 ## Next Steps
 
-- [ ] Fix time zone
-- [ ] Get period edit functions working with PLE
+- [ ] Get headline edit functions working with PLE
+- [ ] Get note edit functions working with PLE
 
 - [ ] Broadcast: tick-1, startperiod-1, editheadline-1
 
@@ -124,6 +133,8 @@ Learnings
 
 - [ ] Add release 
 - [ ] Deploy to lark 
+
+- [ ] Why 3 rings?
 
 - [ ] Get client working  
 

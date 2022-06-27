@@ -16,6 +16,7 @@ defmodule DomoWeb.WlogLive do
       :ok,
       assign(
         socket,
+        tz: get_tz(socket),
         sec_str: "",
         sec_klas: "green",
         s_count: 0,
@@ -52,6 +53,17 @@ defmodule DomoWeb.WlogLive do
   end
 
   # ----- view helpers
+
+  def ldate(date, zone) do
+    case DateTime.shift_zone(date, zone) do
+      {:ok, dt} -> DateTime.truncate(dt, :second) |> Calendar.strftime("%b-%d %H:%M")
+      {:error, _dt} -> DateTime.truncate(date, :second) |> Calendar.strftime("%b-%d %H:%M Z")
+    end
+  end
+
+  def get_tz(socket) do
+    Phoenix.LiveView.get_connect_params(socket)["tz"] || "Etc/UTC"
+  end
 
   def sec_to_str(secs) when secs < 0 do
     "<#{Util.Seconds.to_s(secs)}>"

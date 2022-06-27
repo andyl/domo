@@ -2,6 +2,8 @@ defmodule Domo.Users.Interval do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @timestamps_opts [type: :utc_datetime]
+
   schema "intervals" do
     field :desc, :string
     field :hotkey, :string

@@ -55,9 +55,8 @@ defmodule Domo.Users do
   end
 
   defp timenow do
-    secs = Time.utc_now() |> Time.truncate(:second)
-    Date.utc_today
-    |> NaiveDateTime.new!(secs)
+    DateTime.utc_now()
+    |> DateTime.truncate(:second)
   end
 
   defp max_sequence(user_id) do

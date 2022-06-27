@@ -23,7 +23,7 @@
             <td><%= p.sequence %></td>
             <td><%= p.seconds |> Domo.Interval.short_label_for() %></td> 
             <td>na</td>
-            <td><%= p.inserted_at |> Calendar.strftime("%b-%d %H:%M") %></td>
+            <td><%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %></td>
             <td><%= p.status %></td>
           </tr>
         <% end %>
