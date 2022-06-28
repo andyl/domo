@@ -1,7 +1,7 @@
 defmodule DomoWeb.Test1Live do
 
   use Phoenix.LiveView
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
 
   # ----- lifecycle callbacks
   def mount(_params, session, socket) do
