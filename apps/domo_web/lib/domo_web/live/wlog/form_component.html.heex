@@ -1,5 +1,5 @@
 <div>
-  <h2><%= "ZZZ" %></h2>
+  <h2>#<%= @period.sequence %> - <%= Domo.Util.Interval.short_label_for(@period.seconds) %> - <%= @period.status %></h2>
 
   <.form
     let={f}

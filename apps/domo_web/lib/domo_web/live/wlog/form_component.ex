@@ -8,10 +8,12 @@ defmodule DomoWeb.WlogLive.FormComponent do
   def update(%{period: period} = assigns, socket) do
     changeset = Ctx.Users.period_changeset(period)
 
-    {:ok,
-     socket
-     |> assign(assigns)
-     |> assign(:changeset, changeset)}
+    {
+      :ok,
+      socket
+      |> assign(assigns)
+      |> assign(:changeset, changeset)
+    }
   end
 
   # ----- event handlers
@@ -20,6 +22,7 @@ defmodule DomoWeb.WlogLive.FormComponent do
     changeset =
       socket.assigns.period
       |> Ctx.Users.period_changeset(fields)
+      |> IO.inspect(label: "XXX")
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
@@ -30,7 +33,7 @@ defmodule DomoWeb.WlogLive.FormComponent do
     Ctx.Users.update_user_period(period.user_id, period.sequence, fields)
     {:noreply,
       socket
-      |> put_flash(:info, "period updated successfully")
+      # |> put_flash(:info, "period updated successfully")
       |> push_redirect(to: socket.assigns.return_to)}
   end
 

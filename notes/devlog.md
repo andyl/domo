@@ -156,11 +156,12 @@ Learnings
 Deploy
 - [x] Add release 
 - [x] Deploy to lark 
+- [x] Make flash message time-out (with fade transition)
 
 ## Next Steps
 
 UI
-- [ ] Hourglass Favicon: black, green, yellow, purple, red (noun project)
-- [ ] Make flash message time-out (with fade transition)
+- [-] Hourglass Favicon: black, green, yellow, purple, red (noun project)
 - [ ] Fix edit screen validation erasure
+- [ ] Update title for edit modal
 
