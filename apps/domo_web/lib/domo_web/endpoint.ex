@@ -20,7 +20,7 @@ defmodule DomoWeb.Endpoint do
     at: "/",
     from: :domo_web,
     gzip: false,
-    only: ~w(assets fonts images favicon.ico robots.txt)
+    only: ~w(assets fonts img images favicon.ico favicon-black.ico favicon-green.ico favicon-purple.ico favicon-red.ico favicon-yellow.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

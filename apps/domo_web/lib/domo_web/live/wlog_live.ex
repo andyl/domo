@@ -23,7 +23,7 @@ defmodule DomoWeb.WlogLive do
         socket,
         tz: get_tz(socket),
         sec_str: "",
-        sec_klas: "green",
+        sec_klas: nil,
         s_count: 0,
         page_title: "Domo",
         session_id: session["live_socket_id"],

@@ -4,6 +4,19 @@ defmodule DomoWeb.LiveHelpers do
 
   alias Phoenix.LiveView.JS
 
+  def favicon_tag(assigns) do
+    IO.inspect(assigns, label: "ASSIGGG")
+    IO.inspect(assigns[:page_title], label: "BOMBER")
+    # color = assigns[:color]
+    # lcol = color || "black"
+    lcol = "black"
+    href = "/img/favicon-#{lcol}.ico"
+    IO.inspect(href, label: "HREFF")
+    ~H"""
+    <link rel='icon' type='image/x-icon' href={href} size='32x32'/>
+    """
+  end
+
   @doc """
   Renders a live component inside a modal.
 
