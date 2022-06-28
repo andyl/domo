@@ -1,4 +1,4 @@
-defmodule Domo.Users.Interval do
+defmodule Domo.Sch.Users.Interval do
   use Ecto.Schema
   import Ecto.Changeset
 

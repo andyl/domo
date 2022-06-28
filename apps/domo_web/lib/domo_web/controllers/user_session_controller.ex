@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserSessionController do
   use DomoWeb, :controller
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
   alias DomoWeb.UserAuth
 
   def new(conn, _params) do

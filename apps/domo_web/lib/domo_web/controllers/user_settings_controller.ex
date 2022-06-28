@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserSettingsController do
   use DomoWeb, :controller
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
   alias DomoWeb.UserAuth
 
   plug :assign_email_and_password_changesets

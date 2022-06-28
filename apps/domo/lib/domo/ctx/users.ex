@@ -1,4 +1,4 @@
-defmodule Domo.UsersCtx do
+defmodule Domo.Ctx.Users do
   @moduledoc """
   The Users context.
   """
@@ -6,7 +6,7 @@ defmodule Domo.UsersCtx do
   import Ecto.Query, warn: false
   alias Domo.Repo
 
-  alias Domo.Users.Period
+  alias Domo.Sch.Users.Period
 
   @doc """
   Get all periods for a user.

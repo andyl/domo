@@ -11,12 +11,13 @@
 # and so on) as they will fail if something goes wrong.
 
 alias Domo.Accounts
-alias Domo.UsersCtx
+alias Domo.Ctx
+alias Domo.Sch
 alias Domo.Repo
 
 Repo.delete_all(Accounts.User)
 Repo.delete_all(Domo.Users.Interval)
-Repo.delete_all(Domo.Users.Period)
+Repo.delete_all(Sch.Users.Period)
 
 {:ok, user1} = Repo.insert(%Accounts.User{
   uname: "aaa",
@@ -39,4 +40,4 @@ Repo.insert(%Accounts.User{
   }
 )
 
-UsersCtx.start_user_period(user1.id, 5)
+Ctx.Users.start_user_period(user1.id, 5)

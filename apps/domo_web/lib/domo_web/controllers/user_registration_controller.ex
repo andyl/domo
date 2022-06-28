@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserRegistrationController do
   use DomoWeb, :controller
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
   alias Domo.Accounts.User
   alias DomoWeb.UserAuth
 

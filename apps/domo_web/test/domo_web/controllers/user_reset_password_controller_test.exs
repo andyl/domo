@@ -1,7 +1,8 @@
 defmodule DomoWeb.UserResetPasswordControllerTest do
   use DomoWeb.ConnCase, async: true
 
-  alias Domo.Accounts
+  alias Domo.Accounts.{UserToken}
+  alias Domo.Ctx.Accounts
   alias Domo.Repo
   import Domo.AccountsFixtures
 
@@ -27,7 +28,7 @@ defmodule DomoWeb.UserResetPasswordControllerTest do
 
       assert redirected_to(conn) == "/"
       assert get_flash(conn, :info) =~ "If your email is in our system"
-      assert Repo.get_by!(Accounts.UserToken, user_id: user.id).context == "reset_password"
+      assert Repo.get_by!(UserToken, user_id: user.id).context == "reset_password"
     end
 
     test "does not send reset password token if email is invalid", %{conn: conn} do
@@ -38,7 +39,7 @@ defmodule DomoWeb.UserResetPasswordControllerTest do
 
       assert redirected_to(conn) == "/"
       assert get_flash(conn, :info) =~ "If your email is in our system"
-      assert Repo.all(Accounts.UserToken) == []
+      assert Repo.all(UserToken) == []
     end
   end
 

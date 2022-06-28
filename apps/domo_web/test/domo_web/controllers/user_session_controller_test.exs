@@ -26,7 +26,7 @@ defmodule DomoWeb.UserSessionControllerTest do
     test "logs the user in", %{conn: conn, user: user} do
       conn =
         post(conn, Routes.user_session_path(conn, :create), %{
-          "user" => %{"email" => user.email, "password" => valid_user_password()}
+          "user" => %{"uname" => user.uname, "email" => user.email, "password" => valid_user_password()}
         })
 
       assert get_session(conn, :user_token)
@@ -44,6 +44,7 @@ defmodule DomoWeb.UserSessionControllerTest do
       conn =
         post(conn, Routes.user_session_path(conn, :create), %{
           "user" => %{
+            "uname" => user.uname,
             "email" => user.email,
             "password" => valid_user_password(),
             "remember_me" => "true"
@@ -60,6 +61,7 @@ defmodule DomoWeb.UserSessionControllerTest do
         |> init_test_session(user_return_to: "/foo/bar")
         |> post(Routes.user_session_path(conn, :create), %{
           "user" => %{
+            "uname" => user.uname,
             "email" => user.email,
             "password" => valid_user_password()
           }
@@ -71,7 +73,7 @@ defmodule DomoWeb.UserSessionControllerTest do
     test "emits error message with invalid credentials", %{conn: conn, user: user} do
       conn =
         post(conn, Routes.user_session_path(conn, :create), %{
-          "user" => %{"email" => user.email, "password" => "invalid_password"}
+          "user" => %{"uname" => user.uname, "email" => user.email, "password" => "invalid_password"}
         })
 
       response = html_response(conn, 200)

@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserSettingsControllerTest do
   use DomoWeb.ConnCase, async: true
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
   import Domo.AccountsFixtures
 
   setup :register_and_log_in_user

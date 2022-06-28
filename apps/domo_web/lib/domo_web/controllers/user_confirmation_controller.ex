@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserConfirmationController do
   use DomoWeb, :controller
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
 
   def new(conn, _params) do
     render(conn, "new.html")

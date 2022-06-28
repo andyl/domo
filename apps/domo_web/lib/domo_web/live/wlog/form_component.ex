@@ -1,12 +1,12 @@
 defmodule DomoWeb.WlogLive.FormComponent do
   use DomoWeb, :live_component
 
-  alias Domo.UsersCtx
+  alias Domo.Ctx
 
   # ----- lifecycle callbacks
 
   def update(%{period: period} = assigns, socket) do
-    changeset = UsersCtx.period_changeset(period)
+    changeset = Ctx.Users.period_changeset(period)
 
     {:ok,
      socket
@@ -19,7 +19,7 @@ defmodule DomoWeb.WlogLive.FormComponent do
   def handle_event("validate", %{"period" => fields}, socket) do
     changeset =
       socket.assigns.period
-      |> UsersCtx.period_changeset(fields)
+      |> Ctx.Users.period_changeset(fields)
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}
@@ -27,7 +27,7 @@ defmodule DomoWeb.WlogLive.FormComponent do
 
   def handle_event("save", %{"period" => fields}, socket) do
     period = socket.assigns.period
-    UsersCtx.update_user_period(period.user_id, period.sequence, fields)
+    Ctx.Users.update_user_period(period.user_id, period.sequence, fields)
     {:noreply,
       socket
       |> put_flash(:info, "period updated successfully")

@@ -2,7 +2,7 @@ defmodule DomoWeb.UserAuth do
   import Plug.Conn
   import Phoenix.Controller
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
   alias DomoWeb.Router.Helpers, as: Routes
 
   # Make the remember me cookie valid for 60 days.

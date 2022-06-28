@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserResetPasswordController do
   use DomoWeb, :controller
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
 
   plug :get_user_by_reset_password_token when action in [:edit, :update]
 

@@ -2,7 +2,8 @@ defmodule DomoWeb.WlogLive do
 
   use DomoWeb, :live_view
 
-  alias Domo.{Accounts, UsersCtx, Counter}
+  alias Domo.{Accounts, Counter}
+  alias Domo.Ctx
   import DomoWeb.WlogComponent
   import DomoWeb.LiveHelpers
 
@@ -10,9 +11,9 @@ defmodule DomoWeb.WlogLive do
 
   # ----- lifecycle callbacks
   def mount(_params, session, socket) do
-    user = Accounts.get_user_by_session_token(session["user_token"])
+    user = Ctx.Accounts.get_user_by_session_token(session["user_token"])
     uid = user.id |> Integer.to_string()
-    periods = UsersCtx.get_user_periods(user.id)
+    periods = Ctx.Users.get_user_periods(user.id)
 
     Phoenix.PubSub.subscribe(Domo.PubSub, uid)
 
@@ -36,7 +37,7 @@ defmodule DomoWeb.WlogLive do
   def handle_params(%{"id" => sseq}, _uri, socket) do
     uid = socket.assigns[:current_user].id
     iseq = sseq |> String.to_integer()
-    period = UsersCtx.get_user_period(uid, iseq)
+    period = Ctx.Users.get_user_period(uid, iseq)
     case period do
       nil -> {:noreply, socket}
       result -> {:noreply, assign(socket, :edit_period, result)}
@@ -53,10 +54,10 @@ defmodule DomoWeb.WlogLive do
     secs = dsecs |> String.to_integer()
     cuid = socket.assigns[:current_user].id
 
-    UsersCtx.start_user_period(cuid, secs)
+    Ctx.Users.start_user_period(cuid, secs)
     Counter.start(cuid, secs)
 
-    periods = UsersCtx.get_user_periods(cuid)
+    periods = Ctx.Users.get_user_periods(cuid)
 
     {:noreply, assign(socket, :periods, periods)}
   end

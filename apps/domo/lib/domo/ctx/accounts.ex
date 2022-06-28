@@ -1,4 +1,4 @@
-defmodule Domo.Accounts do
+defmodule Domo.Ctx.Accounts do
   @moduledoc """
   The Accounts context.
   """

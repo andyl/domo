@@ -126,6 +126,8 @@ Learnings
 ## Next Steps
 
 - [ ] Refactor CTX / SCH 
+- [ ] Make tests for CTX
+
 - [ ] Review Ecto validations
 - [ ] Get note edit functions working with Modal 
 
