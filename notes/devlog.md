@@ -122,13 +122,14 @@ Learnings
 - [x] Fix time zone
 - [x] Get note edit functions working with Modal 
 - [x] Get tests working with superwatch 
+- [x] Refactor CTX / SCH 
+- [x] Make tests for CTX
+- [x] Fix alternate file nav (src/tst)
 
 ## Next Steps
 
-- [ ] Refactor CTX / SCH 
-- [ ] Make tests for CTX
-
 - [ ] Review Ecto validations
+
 - [ ] Get note edit functions working with Modal 
 
 - [ ] Get headline edit function working with PLE

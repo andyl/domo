@@ -10,33 +10,32 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias Domo.Accounts
 alias Domo.Ctx
 alias Domo.Sch
 alias Domo.Repo
 
-Repo.delete_all(Accounts.User)
+Repo.delete_all(Sch.Accounts.User)
 Repo.delete_all(Sch.Users.Interval)
 Repo.delete_all(Sch.Users.Period)
 
-{:ok, user1} = Repo.insert(%Accounts.User{
+{:ok, user1} = Repo.insert(%Sch.Accounts.User{
   uname: "aaa",
   email: "aaa@aaa.com",
-  hashed_password: Accounts.User.pwd_hash("123456789012"),
+  hashed_password: Sch.Accounts.User.pwd_hash("123456789012"),
   }
 )
 
-Repo.insert(%Accounts.User{
+Repo.insert(%Sch.Accounts.User{
   uname: "bbb",
   email: "bbb@bbb.com",
-  hashed_password: Accounts.User.pwd_hash("123456789012"),
+  hashed_password: Sch.Accounts.User.pwd_hash("123456789012"),
   }
 )
 
-Repo.insert(%Accounts.User{
+Repo.insert(%Sch.Accounts.User{
   uname: "ccc",
   email: "ccc@ccc.com",
-  hashed_password: Accounts.User.pwd_hash("123456789012")
+  hashed_password: Sch.Accounts.User.pwd_hash("123456789012")
   }
 )
 
