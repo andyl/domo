@@ -8,12 +8,9 @@ defmodule Domo.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Ecto repository
       Domo.Repo,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: Domo.PubSub}
-      # Start a worker by calling: Domo.Worker.start_link(arg)
-      # {Domo.Worker, arg}
+      {Phoenix.PubSub, name: Domo.PubSub},
+      Domo.Counter
     ]
 
     Supervisor.start_link(children, strategy: :one_for_one, name: Domo.Supervisor)

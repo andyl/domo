@@ -1,13 +1,20 @@
 defmodule DomoWeb.Router do
   use DomoWeb, :router
 
+  import DomoWeb.UserAuth
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {DomoWeb.LayoutView, :root}
+    plug :put_root_layout, {DomoWeb.LayoutView, :root_base}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :fetch_current_user
+  end
+
+  pipeline :live_layout do
+    plug :put_root_layout, {DomoWeb.LayoutView, :root_live}
   end
 
   pipeline :api do
@@ -17,7 +24,32 @@ defmodule DomoWeb.Router do
   scope "/", DomoWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/",      PageController, :index
+    get "/count", PageController, :count
+  end
+
+  scope "/", DomoWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    live "/test1", Test1Live
+  end
+
+  scope "/wlog", DomoWeb do
+    pipe_through [:browser, :live_layout, :require_authenticated_user]
+    live "/", WlogLive, :index
+    live "/:id/edit", WlogLive, :edit
+  end
+
+  scope "/base", DomoWeb do
+    pipe_through :browser
+    get "/",               BaseController, :secs
+    get "/raw",            BaseController, :secs
+    get "/mins",           BaseController, :mins
+    get "/secs",           BaseController, :secs
+    get "/secs_to_s",      BaseController, :secs_to_s
+    get "/decrement",      BaseController, :decrement
+    get "/set_secs/:secs", BaseController, :set_secs
+    get "/set_mins/:mins", BaseController, :set_mins
   end
 
   # Other scopes may use custom stacks.
@@ -52,5 +84,38 @@ defmodule DomoWeb.Router do
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
+  end
+
+  ## Authentication routes
+
+  scope "/", DomoWeb do
+    pipe_through [:browser, :redirect_if_user_is_authenticated]
+
+    get "/users/register", UserRegistrationController, :new
+    post "/users/register", UserRegistrationController, :create
+    get "/users/log_in", UserSessionController, :new
+    post "/users/log_in", UserSessionController, :create
+    get "/users/reset_password", UserResetPasswordController, :new
+    post "/users/reset_password", UserResetPasswordController, :create
+    get "/users/reset_password/:token", UserResetPasswordController, :edit
+    put "/users/reset_password/:token", UserResetPasswordController, :update
+  end
+
+  scope "/", DomoWeb do
+    pipe_through [:browser, :require_authenticated_user]
+
+    get "/users/settings", UserSettingsController, :edit
+    put "/users/settings", UserSettingsController, :update
+    get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+  end
+
+  scope "/", DomoWeb do
+    pipe_through [:browser]
+
+    delete "/users/log_out", UserSessionController, :delete
+    get "/users/confirm", UserConfirmationController, :new
+    post "/users/confirm", UserConfirmationController, :create
+    get "/users/confirm/:token", UserConfirmationController, :edit
+    post "/users/confirm/:token", UserConfirmationController, :update
   end
 end

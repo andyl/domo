@@ -1,11 +1,30 @@
-<main class="container">
-  <p class="alert alert-info" role="alert"
-    phx-click="lv:clear-flash"
-    phx-value-key="info"><%= live_flash(@flash, :info) %></p>
+<main class="wrapper">
+  <nav class="navigation">
 
-  <p class="alert alert-danger" role="alert"
-    phx-click="lv:clear-flash"
-    phx-value-key="error"><%= live_flash(@flash, :error) %></p>
+    <section class="container" style="margin-top: 5px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+      <div>Domo</div>
+      <div class={@sec_klas} style="text-align: center; padding: 0 10px 0 10px;">
+        <b>
+          <%= @sec_str %> 
+        </b>
+      </div>
+      <div><%= @current_user.uname %></div>
+    </section>
+
+  </nav>
+
+  <section class="container">
+
+    <p class="alert alert-info" role="alert"
+      phx-click="lv:clear-flash"
+      phx-value-key="info"><%= live_flash(@flash, :info) %></p>
+
+    <p class="alert alert-danger" role="alert"
+      phx-click="lv:clear-flash"
+      phx-value-key="error"><%= live_flash(@flash, :error) %></p>
+
+  </section>
 
   <%= @inner_content %>
+
 </main>

@@ -1,0 +1,26 @@
+{
+  "apps/domo/lib/*.ex": {
+    "alternate": "apps/domo/test/{}_test.exs",
+    "type": "src"
+  },
+  "apps/domo/test/*_test.exs": {
+    "alternate": "apps/domo/lib/{}.ex",
+    "type": "src"
+  },
+  "apps/domo_web/lib/*.ex": {
+    "alternate": "apps/domo_web/test/{}_test.exs",
+    "type": "src"
+  },
+  "apps/domo_web/test/*_test.exs": {
+    "alternate": "apps/domo_web/lib/{}.ex",
+    "type": "src"
+  },
+  "apps/termato/lib/*.ex": {
+    "alternate": "apps/termato/test/{}_test.exs",
+    "type": "src"
+  },
+  "apps/termato/test/*_test.exs": {
+    "alternate": "apps/termato/lib/{}.ex",
+    "type": "src"
+  }
+}
