@@ -2,7 +2,7 @@ defmodule DomoWeb.WlogLive do
 
   use DomoWeb, :live_view
 
-  alias Domo.{Accounts, Counter}
+  alias Domo.Counter
   alias Domo.Ctx
   import DomoWeb.WlogComponent
   import DomoWeb.LiveHelpers

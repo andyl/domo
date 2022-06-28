@@ -2,32 +2,54 @@
 
 ## Roadmap
 
-Basics
-- [ ] `phoenix_live_editable`
+Constraints
+- [ ] Unique uname 
+- [ ] Unique email 
+- [ ] `unsafe_validate_unique`
 
-Styling 
-- [ ] Add JS effect to link (25 mins / 15 mins / 5 mins / 5 secs)
-- [ ] Copy timer styles from TERMATO
+MultiScreen Sync
+- [ ] Broadcast: tick-1, startperiod-1, editheadline-1
 
-Basics
-- [ ] Underline on date boundaries 
-- [ ] Add colored favicons (green, yellow, magenta, red)
+UI
+- [ ] Hourglass Favicon: black, green, yellow, purple, red (noun project)
+- [ ] Make flash message time-out 
 
-Features
-- [ ] Use UTC time in database / adjust for local TZ 
-- [ ] Add an archive feature 
+Database
+- [ ] Tags: `periods <- period_tags -> tags`
 
-History
-- [ ] Add comments to History (Tags, Title, Date, Remaining, Reset, Notes)
-- [ ] Server support 
+Testing
+- [ ] Get tests for counter working 
+
+Issues
+- [ ] Why 3 alert rings?
+
+Integration
+- [ ] Get headline edit function working with PLE
+
+Clients
+- [ ] Cli Client 
+- [ ] Flutter Client 
 - [ ] Ruby Client (input & output) 
 - [ ] Html Client (input & output)
 - [ ] Neovim Integration
+- [ ] Graphql Client
 
-Websocket Demos
+Websocket Clients
 - [ ] Echo: Server, Clients (Ruby, JS, Elixir, LiveView) 
 - [ ] Clock: Server, Clients (Ruby, JS, Elixir, LiveView)  
 - [ ] Chat: Server, Clients (Ruby, JS, Elixir, LiveView) 
+
+CLI Client
+- [ ] Elixir Client with `phoenix_gen_socket_client` 
+- [ ] Add websocket server with token auth 
+- [ ] Websocket Clients: Ruby, JS, Elixir 
+
+Cleanup
+- [ ] Remove V1
+- [ ] Remove termato 
+
+Features
+- [ ] Add import/export
 
 Analytics & Invoicing
 - [ ] Add analytics
@@ -37,10 +59,10 @@ Alt
 - [ ] Integrate with Atree 
 - [ ] Messaging Integration 
 
-CLI 
-- [ ] Elixir Client with `phoenix_gen_socket_client` 
-- [ ] Add websocket server with token auth 
-- [ ] Websocket Clients: Ruby, JS, Elixir 
+Do Not Disturb
+- [ ] Phone 
+- [ ] SMS 
+- [ ] Email 
 
 Apps
 - [ ] Create Flutter Mobile App 
@@ -125,26 +147,12 @@ Learnings
 - [x] Refactor CTX / SCH 
 - [x] Make tests for CTX
 - [x] Fix alternate file nav (src/tst)
+- [x] Review Ecto validations
+- [x] Get note edit functions working with Modal 
 
 ## Next Steps
 
-- [ ] Review Ecto validations
-
-- [ ] Get note edit functions working with Modal 
-
-- [ ] Get headline edit function working with PLE
-
-- [ ] Broadcast: tick-1, startperiod-1, editheadline-1
-
-- [ ] Get tests for counter working 
-
+Deploy
 - [ ] Add release 
 - [ ] Deploy to lark 
-
-- [ ] Why 3 rings?
-
-- [ ] Get client working  
-
-- [ ] Remove V1
-- [ ] Remove termato 
 

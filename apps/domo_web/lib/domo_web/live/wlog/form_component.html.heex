@@ -13,6 +13,10 @@
     <%= text_input f, :headline %>
     <%= error_tag f, :headline %>
   
+    <%= label f, :notes %>
+    <%= textarea f, :notes, style: "height: 300px;" %>
+    <%= error_tag f, :notes %>
+  
     <div>
       <%= submit "Save", phx_disable_with: "Saving..." %>
     </div>
