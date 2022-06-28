@@ -121,10 +121,9 @@ Learnings
 
 - [x] Fix time zone
 - [x] Get note edit functions working with Modal 
+- [x] Get tests working with superwatch 
 
 ## Next Steps
-
-- [ ] Get tests working with superwatch 
 
 - [ ] Refactor CTX / SCH 
 - [ ] Review Ecto validations
