@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserConfirmationControllerTest do
   use DomoWeb.ConnCase, async: true
 
-  alias Domo.Accounts.{UserToken, User}
+  alias Domo.Sch.Accounts.{UserToken, User}
   alias Domo.Ctx.Accounts
   alias Domo.Repo
   import Domo.AccountsFixtures

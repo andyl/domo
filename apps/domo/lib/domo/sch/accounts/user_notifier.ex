@@ -1,4 +1,4 @@
-defmodule Domo.Accounts.UserNotifier do
+defmodule Domo.Sch.Accounts.UserNotifier do
   import Swoosh.Email
 
   alias Domo.Mailer

@@ -4,7 +4,7 @@ defmodule Domo.Ctx.AccountsTest do
   alias Domo.Ctx.Accounts
 
   import Domo.AccountsFixtures
-  alias Domo.Accounts.{User, UserToken}
+  alias Domo.Sch.Accounts.{User, UserToken}
 
   describe "get_user_by_email/1" do
     test "does not return the user if the email does not exist" do

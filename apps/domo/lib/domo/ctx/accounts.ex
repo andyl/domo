@@ -6,7 +6,7 @@ defmodule Domo.Ctx.Accounts do
   import Ecto.Query, warn: false
   alias Domo.Repo
 
-  alias Domo.Accounts.{User, UserToken, UserNotifier}
+  alias Domo.Sch.Accounts.{User, UserToken, UserNotifier}
 
   ## Database getters
 

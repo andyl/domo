@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserResetPasswordControllerTest do
   use DomoWeb.ConnCase, async: true
 
-  alias Domo.Accounts.{UserToken}
+  alias Domo.Sch.Accounts.{UserToken}
   alias Domo.Ctx.Accounts
   alias Domo.Repo
   import Domo.AccountsFixtures
