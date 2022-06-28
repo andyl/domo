@@ -1,7 +1,7 @@
 <div>
 
   <section class="container" style="padding: 10px; background-color: lightgray; display: flex; justify-content: space-between; align-items: center;">
-    <%= for int <- Domo.Interval.all() do %> 
+    <%= for int <- Domo.Util.Interval.all() do %> 
       <.start_link text={int.text} label={int.label} secs={int.seconds} />
     <% end %>
   </section>
@@ -35,7 +35,7 @@
         <%= for p <- @periods do %>
           <tr>
             <td><%= p.sequence %></td>
-            <td><%= p.seconds |> Domo.Interval.short_label_for() %></td> 
+            <td><%= p.seconds |> Domo.Util.Interval.short_label_for() %></td> 
             <td><%= p.headline || "na" %></td>
             <td><%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %></td>
             <td><%= p.status %></td>

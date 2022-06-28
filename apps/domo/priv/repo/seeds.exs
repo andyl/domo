@@ -16,7 +16,7 @@ alias Domo.Sch
 alias Domo.Repo
 
 Repo.delete_all(Accounts.User)
-Repo.delete_all(Domo.Users.Interval)
+Repo.delete_all(Sch.Users.Interval)
 Repo.delete_all(Sch.Users.Period)
 
 {:ok, user1} = Repo.insert(%Accounts.User{
