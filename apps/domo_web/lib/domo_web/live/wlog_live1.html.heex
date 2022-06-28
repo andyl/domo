@@ -8,14 +8,7 @@
   
   <%= if @edit_period do %>
     <.modal return_to={Routes.wlog_path(@socket, :index)}>
-      <.live_component
-        module={DomoWeb.WlogLive.FormComponent}
-        id={@edit_period.id}
-        title={@page_title}
-        action={@live_action}
-        period={@edit_period}
-        return_to={Routes.wlog_path(@socket, :index)}
-      />
+      HELLO WORLD <%= @edit_period.id %> / <%= @edit_period.headline %>
     </.modal>
   <% end %>
 
@@ -36,7 +29,7 @@
           <tr>
             <td><%= p.sequence %></td>
             <td><%= p.seconds |> Domo.Interval.short_label_for() %></td> 
-            <td><%= p.headline || "na" %></td>
+            <td>na</td>
             <td><%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %></td>
             <td><%= p.status %></td>
             <td>

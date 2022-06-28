@@ -1,12 +1,20 @@
-defmodule Domo.Users do
+defmodule Domo.UsersCtx do
   @moduledoc """
-  The Accounts context.
+  The Users context.
   """
 
   import Ecto.Query, warn: false
   alias Domo.Repo
 
   alias Domo.Users.Period
+
+  @doc """
+  Get all periods for a user.
+  """
+  def get_user_period(user_id, seq) when is_integer(user_id) do
+    qry = from p in Period, where: p.user_id == ^user_id and p.sequence == ^seq, limit: 1
+    Repo.one(qry)
+  end
 
   @doc """
   Get all periods for a user.
@@ -51,7 +59,30 @@ defmodule Domo.Users do
   """
   def update_user_period(user_id, sequence, args) when is_integer(user_id) do
     qry1 = from p in Period, where: p.user_id == ^user_id and p.sequence == ^sequence
-    Repo.update_all(qry1, set: args)
+    Repo.update_all(qry1, set: klist(args))
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking period changes.
+
+  ## Examples
+
+      iex> period_changeset(period)
+      %Ecto.Changeset{data: %Period{}}
+
+  """
+  def period_changeset(%Period{} = period, attrs \\ %{}) do
+    Period.changeset(period, attrs)
+  end
+
+  # ----- helpers
+
+  defp klist(ele) when is_map(ele) do
+    Enum.map(ele, fn({key, value}) -> {String.to_existing_atom(key), value} end)
+  end
+
+  defp klist(lst) when is_list(lst) do
+    lst
   end
 
   defp timenow do

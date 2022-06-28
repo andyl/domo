@@ -1,0 +1,20 @@
+<div>
+  <h2><%= "ZZZ" %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="period-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="save">
+  
+    <%= label f, :headline %>
+    <%= text_input f, :headline %>
+    <%= error_tag f, :headline %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

@@ -120,15 +120,20 @@ Learnings
 ## 2022 Jun 27 Mon
 
 - [x] Fix time zone
+- [x] Get note edit functions working with Modal 
 
 ## Next Steps
 
-- [ ] Get headline edit functions working with PLE
-- [ ] Get note edit functions working with PLE
+- [ ] Get tests working with superwatch 
+
+- [ ] Refactor CTX / SCH 
+- [ ] Review Ecto validations
+- [ ] Get note edit functions working with Modal 
+
+- [ ] Get headline edit function working with PLE
 
 - [ ] Broadcast: tick-1, startperiod-1, editheadline-1
 
-- [ ] Get tests working with superwatch 
 - [ ] Get tests for counter working 
 
 - [ ] Add release 
