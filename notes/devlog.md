@@ -2,18 +2,6 @@
 
 ## Roadmap
 
-Constraints
-- [ ] Unique uname 
-- [ ] Unique email 
-- [ ] `unsafe_validate_unique`
-
-MultiScreen Sync
-- [ ] Broadcast: tick-1, startperiod-1, editheadline-1
-
-UI
-- [ ] Hourglass Favicon: black, green, yellow, purple, red (noun project)
-- [ ] Make flash message time-out 
-
 Database
 - [ ] Tags: `periods <- period_tags -> tags`
 
@@ -25,6 +13,12 @@ Issues
 
 Integration
 - [ ] Get headline edit function working with PLE
+
+MultiScreen Sync
+- [ ] Broadcast: tick-1, startperiod-1, editheadline-1
+
+UI 
+- [ ] Style with Tailwind 
 
 Clients
 - [ ] Cli Client 
@@ -43,6 +37,19 @@ CLI Client
 - [ ] Elixir Client with `phoenix_gen_socket_client` 
 - [ ] Add websocket server with token auth 
 - [ ] Websocket Clients: Ruby, JS, Elixir 
+
+Registration Validation Constraints
+- [ ] Unique uname 
+- [ ] Unique email 
+- [ ] `unsafe_validate_unique`
+
+Production 
+- [ ] Fix email sending
+
+Tag Behavior
+- [ ] Communication Prefs (phone, SMS)
+- [ ] Project Prefs (github project, customer)
+- [ ] Atree Prefs (which action tree)
 
 Cleanup
 - [ ] Remove V1
@@ -150,9 +157,17 @@ Learnings
 - [x] Review Ecto validations
 - [x] Get note edit functions working with Modal 
 
-## Next Steps
+## 2022 Jun 28 Tue
 
 Deploy
-- [ ] Add release 
-- [ ] Deploy to lark 
+- [x] Add release 
+- [x] Deploy to lark 
+- [x] Make flash message time-out (with fade transition)
+
+- [x] Update title for edit modal
+- [x] Hourglass Favicon: black, green, yellow, purple, red (noun project)
+- [x] Fix edit screen validation erasure
+
+## Next Steps
+
 
