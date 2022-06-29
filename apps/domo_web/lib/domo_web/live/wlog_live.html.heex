@@ -36,7 +36,7 @@
           <tr>
             <td><%= p.sequence %></td>
             <td><%= p.seconds |> Domo.Util.Interval.short_label_for() %></td> 
-            <td><%= p.headline || "na" %></td>
+            <td><%= p.headline || "na" %><%= DomoWeb.WlogLive.note_tag(p.notes) %></td>
             <td><%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %></td>
             <td><%= p.status %></td>
             <td>

@@ -22,7 +22,6 @@ defmodule DomoWeb.WlogLive.FormComponent do
     changeset =
       socket.assigns.period
       |> Ctx.Users.period_changeset(fields)
-      |> IO.inspect(label: "XXX")
       |> Map.put(:action, :validate)
 
     {:noreply, assign(socket, :changeset, changeset)}

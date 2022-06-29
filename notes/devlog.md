@@ -2,9 +2,6 @@
 
 ## Roadmap
 
-MultiScreen Sync
-- [ ] Broadcast: tick-1, startperiod-1, editheadline-1
-
 Database
 - [ ] Tags: `periods <- period_tags -> tags`
 
@@ -16,6 +13,12 @@ Issues
 
 Integration
 - [ ] Get headline edit function working with PLE
+
+MultiScreen Sync
+- [ ] Broadcast: tick-1, startperiod-1, editheadline-1
+
+UI 
+- [ ] Style with Tailwind 
 
 Clients
 - [ ] Cli Client 
@@ -39,6 +42,9 @@ Registration Validation Constraints
 - [ ] Unique uname 
 - [ ] Unique email 
 - [ ] `unsafe_validate_unique`
+
+Production 
+- [ ] Fix email sending
 
 Tag Behavior
 - [ ] Communication Prefs (phone, SMS)
@@ -158,10 +164,10 @@ Deploy
 - [x] Deploy to lark 
 - [x] Make flash message time-out (with fade transition)
 
+- [x] Update title for edit modal
+- [x] Hourglass Favicon: black, green, yellow, purple, red (noun project)
+- [x] Fix edit screen validation erasure
+
 ## Next Steps
 
-UI
-- [-] Hourglass Favicon: black, green, yellow, purple, red (noun project)
-- [ ] Fix edit screen validation erasure
-- [ ] Update title for edit modal
 

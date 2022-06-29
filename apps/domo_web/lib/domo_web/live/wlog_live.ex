@@ -63,16 +63,29 @@ defmodule DomoWeb.WlogLive do
   end
 
   def handle_info({"tick", secs}, socket) do
+    oldklas = socket.assigns.sec_klas
+    newklas = secs |> Util.Seconds.klas()
+    if oldklas != newklas do
+      send(self(), {"newfav", newklas})
+    end
     opts = [
       s_count: secs,
       sec_str: sec_to_str(secs),
-      sec_klas: secs |> Util.Seconds.klas(),
+      sec_klas: newklas,
       page_title: title(secs)
     ]
     {:noreply, assign(socket, opts)}
   end
 
+  def handle_info({"newfav", newklas}, socket) do
+    {:noreply, push_event(socket, "newfav", %{color: newklas})}
+  end
+
   # ----- view helpers
+
+  def note_tag(nil), do: ""
+  def note_tag(""), do: ""
+  def note_tag(_), do: " <N>"
 
   def ldate(date, zone) do
     case DateTime.shift_zone(date, zone) do
