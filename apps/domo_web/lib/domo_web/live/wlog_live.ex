@@ -68,6 +68,7 @@ defmodule DomoWeb.WlogLive do
     if oldklas != newklas do
       send(self(), {"newfav", newklas})
     end
+
     opts = [
       s_count: secs,
       sec_str: sec_to_str(secs),
