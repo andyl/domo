@@ -4,6 +4,7 @@
 
 Database
 - [ ] Tags: `periods <- period_tags -> tags`
+- [ ] CubDB: preserve counter between restarts
 
 Testing
 - [ ] Get tests for counter working 
@@ -168,6 +169,12 @@ Deploy
 - [x] Hourglass Favicon: black, green, yellow, purple, red (noun project)
 - [x] Fix edit screen validation erasure
 
+## 2022 Jun 30 Thu
+
+- [x] Try resetting favicon to black before closing 
+- [x] Cleanup favicon reset logic 
+
 ## Next Steps
 
+- [ ] Headline in title "<headline> 07m 22s"
 

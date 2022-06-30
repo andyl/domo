@@ -38,7 +38,11 @@ window.addEventListener("phx:newfav", (e) => {
   var color = e.detail.color
   var fabtag = document.getElementById('favicon')
   fabtag.href = `/img/favicon-${color}.ico`
-  //console.log(`NEWFAV ${color}`)
+})
+window.addEventListener("beforeunload", (e) => {
+  console.log("BEFORECLOSE")
+  var fabtag = document.getElementById('favicon')
+  fabtag.href = "/img/favicon-black.ico"
 })
 
 // connect if there are any LiveViews on the page
