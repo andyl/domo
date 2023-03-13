@@ -4,11 +4,13 @@ defmodule Domo.AccountsFixtures do
   entities via the `Domo.Accounts` context.
   """
 
+  def unique_user_uname, do: "User#{System.unique_integer()}"
   def unique_user_email, do: "user#{System.unique_integer()}@example.com"
   def valid_user_password, do: "hello world!"
 
   def valid_user_attributes(attrs \\ %{}) do
     Enum.into(attrs, %{
+      uname: unique_user_uname(),
       email: unique_user_email(),
       password: valid_user_password()
     })

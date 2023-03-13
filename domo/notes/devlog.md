@@ -3,9 +3,18 @@
 ## Revamp 
 
 - [x] Phoenix 1.7 from scratch 
-- [ ] New auth
-- [ ] New contexts from scratch 
-- [ ] Use TailwindUI 
+- [x] New auth
+- [x] Get seeds working 
+- [x] Add seeds to ecto.setup 
+- [x] Test login 
+- [x] Run mix.test 
+- [ ] Add migrations (intervals, periods)
+- [ ] New Contexts from scratch (intervals, periods)
+- [ ] Refactor Schemas and Contextx 
+- [ ] Convert to TailwindUI 
+- [ ] Build wlog page 
+- [ ] Get icon working 
+- [ ] Get counter-clock working 
 
 ## Roadmap
 

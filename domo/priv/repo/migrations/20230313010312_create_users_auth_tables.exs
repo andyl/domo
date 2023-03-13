@@ -4,13 +4,17 @@ defmodule Domo.Repo.Migrations.CreateUsersAuthTables do
   def change do
     execute "CREATE EXTENSION IF NOT EXISTS citext", ""
 
+    # ----- users
+
     create table(:users) do
+      add :uname, :citext, null: false
       add :email, :citext, null: false
       add :hashed_password, :string, null: false
       add :confirmed_at, :naive_datetime
       timestamps()
     end
 
+    create unique_index(:users, [:uname])
     create unique_index(:users, [:email])
 
     create table(:users_tokens) do
@@ -23,5 +27,39 @@ defmodule Domo.Repo.Migrations.CreateUsersAuthTables do
 
     create index(:users_tokens, [:user_id])
     create unique_index(:users_tokens, [:context, :token])
+
+    # ----- intervals
+
+    create table(:intervals) do
+      add :position, :integer
+      add :seconds, :integer
+      add :name, :string
+      add :desc, :string
+      add :hotkey, :string
+      add :user_id, references(:users, on_delete: :nothing)
+
+      timestamps()
+    end
+
+    create index(:intervals, [:user_id])
+
+    # ----- periods
+
+    create table(:periods) do
+      add :headline, :string
+      add :seconds, :integer
+      add :sequence, :integer
+      add :start_at, :utc_datetime
+      add :end_at, :utc_datetime
+      add :status, :string
+      add :notes, :string
+      add :tags, :string
+      add :user_id, references(:users, on_delete: :nothing)
+
+      timestamps()
+    end
+
+    create index(:periods, [:user_id])
+
   end
 end
