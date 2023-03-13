@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserConfirmationLive do
   use DomoWeb, :live_view
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
 
   def render(%{live_action: :edit} = assigns) do
     ~H"""

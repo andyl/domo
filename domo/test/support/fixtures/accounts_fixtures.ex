@@ -20,7 +20,7 @@ defmodule Domo.AccountsFixtures do
     {:ok, user} =
       attrs
       |> valid_user_attributes()
-      |> Domo.Accounts.register_user()
+      |> Domo.Ctx.Accounts.register_user()
 
     user
   end

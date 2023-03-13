@@ -2,7 +2,7 @@ defmodule DomoWeb.UserAuthTest do
   use DomoWeb.ConnCase, async: true
 
   alias Phoenix.LiveView
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
   alias DomoWeb.UserAuth
   import Domo.AccountsFixtures
 

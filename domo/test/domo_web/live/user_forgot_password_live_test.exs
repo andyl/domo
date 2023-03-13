@@ -4,7 +4,7 @@ defmodule DomoWeb.UserForgotPasswordLiveTest do
   import Phoenix.LiveViewTest
   import Domo.AccountsFixtures
 
-  alias Domo.Accounts
+  alias Domo.Sch.Accounts
   alias Domo.Repo
 
   describe "Forgot password page" do

@@ -55,7 +55,7 @@ defmodule DomoWeb.ConnCase do
   It returns an updated `conn`.
   """
   def log_in_user(conn, user) do
-    token = Domo.Accounts.generate_user_session_token(user)
+    token = Domo.Ctx.Accounts.generate_user_session_token(user)
 
     conn
     |> Phoenix.ConnTest.init_test_session(%{})

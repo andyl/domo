@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserConfirmationInstructionsLive do
   use DomoWeb, :live_view
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
 
   def render(assigns) do
     ~H"""

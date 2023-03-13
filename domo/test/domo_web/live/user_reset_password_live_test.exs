@@ -4,7 +4,7 @@ defmodule DomoWeb.UserResetPasswordLiveTest do
   import Phoenix.LiveViewTest
   import Domo.AccountsFixtures
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
 
   setup do
     user = user_fixture()

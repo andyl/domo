@@ -1,7 +1,7 @@
 defmodule DomoWeb.UserSettingsLiveTest do
   use DomoWeb.ConnCase
 
-  alias Domo.Accounts
+  alias Domo.Ctx.Accounts
   import Phoenix.LiveViewTest
   import Domo.AccountsFixtures
 

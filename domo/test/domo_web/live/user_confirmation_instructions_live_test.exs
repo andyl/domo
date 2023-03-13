@@ -4,7 +4,7 @@ defmodule DomoWeb.UserConfirmationInstructionsLiveTest do
   import Phoenix.LiveViewTest
   import Domo.AccountsFixtures
 
-  alias Domo.Accounts
+  alias Domo.Sch.Accounts
   alias Domo.Repo
 
   setup do

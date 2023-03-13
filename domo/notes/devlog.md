@@ -8,12 +8,13 @@
 - [x] Add seeds to ecto.setup 
 - [x] Test login 
 - [x] Run mix.test 
-- [ ] Add migrations (intervals, periods)
-- [ ] New Contexts from scratch (intervals, periods)
-- [ ] Refactor Schemas and Contextx 
+- [x] Add migrations (intervals, periods)
+- [x] New Contexts from scratch (intervals, periods)
+- [x] Refactor Schemas and Contexts 
+
 - [ ] Convert to TailwindUI 
 - [ ] Build wlog page 
-- [ ] Get icon working 
+- [ ] Get favicon working 
 - [ ] Get counter-clock working 
 
 ## Roadmap

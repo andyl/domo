@@ -1,8 +1,8 @@
 defmodule DomoWeb.UserRegistrationLive do
   use DomoWeb, :live_view
 
-  alias Domo.Accounts
-  alias Domo.Accounts.User
+  alias Domo.Ctx.Accounts
+  alias Domo.Sch.Accounts.User
 
   def render(assigns) do
     ~H"""
