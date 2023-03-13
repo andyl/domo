@@ -2,7 +2,8 @@
 
 ## Revamp 
 
-- [ ] Phoenix 1.7 from scratch 
+- [x] Phoenix 1.7 from scratch 
+- [ ] New auth
 - [ ] New contexts from scratch 
 - [ ] Use TailwindUI 
 
