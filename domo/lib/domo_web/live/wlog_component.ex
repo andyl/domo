@@ -3,6 +3,7 @@ defmodule DomoWeb.WlogComponent do
 
   attr :secs, :integer
   attr :text, :string
+  attr :label, :string
 
   def start_link(assigns) do
     ~H"""

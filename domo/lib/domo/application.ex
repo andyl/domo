@@ -8,28 +8,18 @@ defmodule Domo.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Telemetry supervisor
       DomoWeb.Telemetry,
-      # Start the Ecto repository
       Domo.Repo,
-      # Start the PubSub system
       {Phoenix.PubSub, name: Domo.PubSub},
-      # Start Finch
       {Finch, name: Domo.Finch},
-      # Start the Endpoint (http/https)
-      DomoWeb.Endpoint
-      # Start a worker by calling: Domo.Worker.start_link(arg)
-      # {Domo.Worker, arg}
+      DomoWeb.Endpoint,
+      Domo.Counter
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Domo.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
   @impl true
   def config_change(changed, _new, removed) do
     DomoWeb.Endpoint.config_change(changed, removed)

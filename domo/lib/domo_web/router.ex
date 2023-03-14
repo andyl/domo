@@ -24,11 +24,17 @@ defmodule DomoWeb.Router do
     get "/count", PageController, :count
   end
 
-  # scope "/wlog", DomoWeb do
-  #   pipe_through [:browser, :require_authenticated_user]
-  #   live "/", WlogLive, :index
-  #   live "/:id/edit", WlogLive, :edit
-  # end
+  scope "/tlog", DomoWeb do
+    pipe_through [:browser, :require_authenticated_user]
+    live "/", TlogLive, :index
+    live "/:id/edit", TlogLive, :edit
+  end
+
+  scope "/wlog", DomoWeb do
+    pipe_through [:browser, :require_authenticated_user]
+    live "/", WlogLive, :index
+    live "/:id/edit", WlogLive, :edit
+  end
 
   # scope "/base", DomoWeb do
   #   pipe_through :browser
