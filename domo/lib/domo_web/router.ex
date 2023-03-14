@@ -21,11 +21,25 @@ defmodule DomoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/count", PageController, :count
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", DomoWeb do
-  #   pipe_through :api
+  # scope "/wlog", DomoWeb do
+  #   pipe_through [:browser, :require_authenticated_user]
+  #   live "/", WlogLive, :index
+  #   live "/:id/edit", WlogLive, :edit
+  # end
+
+  # scope "/base", DomoWeb do
+  #   pipe_through :browser
+  #   get "/",               BaseController, :secs
+  #   get "/raw",            BaseController, :secs
+  #   get "/mins",           BaseController, :mins
+  #   get "/secs",           BaseController, :secs
+  #   get "/secs_to_s",      BaseController, :secs_to_s
+  #   get "/decrement",      BaseController, :decrement
+  #   get "/set_secs/:secs", BaseController, :set_secs
+  #   get "/set_mins/:mins", BaseController, :set_mins
   # end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

@@ -2,20 +2,58 @@
 
 ## Revamp 
 
-- [x] Phoenix 1.7 from scratch 
-- [x] New auth
-- [x] Get seeds working 
-- [x] Add seeds to ecto.setup 
-- [x] Test login 
-- [x] Run mix.test 
-- [x] Add migrations (intervals, periods)
-- [x] New Contexts from scratch (intervals, periods)
-- [x] Refactor Schemas and Contexts 
-
-- [ ] Convert to TailwindUI 
 - [ ] Build wlog page 
-- [ ] Get favicon working 
+
+- [ ] Install table view 
 - [ ] Get counter-clock working 
+- [ ] Enable dynamic favicon 
+- [ ] Enable dynamic page title (countdown) 
+- [ ] Test on mobile 
+
+## SSG 
+
+Learn 
+- [ ] Next.js 
+- [ ] HeadlessUI 
+- [ ] ReactJS 
+- [ ] Elixir | Nimble Publisher 
+- [ ] Elixir | Catalog 
+
+Ideas 
+- [ ] GTD Markup 
+- [ ] Integrated into worklog, pomodoro, notes 
+- [ ] Static site generators 
+- [ ] Phone, Text, Web 
+
+GTD Tags 
+- Status   | - [_] {'_' = ' ', 'I', 'A'
+- Priority | -H, -M, -L
+- ID       | !xyza
+- Context  | @gar
+- Project  | /x/y/z
+- Title    | This is the title
+- Tag      | %Bing %Bong
+
+Vim Integration 
+- Sorting 
+- Grouping 
+- Autocomplete 
+
+
+Worklog 
+```
+# Week Beginning 
+
+## 2023 Mar 13 Mon
+
+### Title 
+
+/x/y/x %development %exploration 
+
+Notes go there  
+
+- [ ] -H @gar Give help 
+```
 
 ## Roadmap
 
@@ -190,6 +228,23 @@ Deploy
 
 - [x] Try resetting favicon to black before closing 
 - [x] Cleanup favicon reset logic 
+
+## 2023 Mar 13 Mon
+
+- [x] Phoenix 1.7 from scratch 
+- [x] New auth
+- [x] Get seeds working 
+- [x] Add seeds to ecto.setup 
+- [x] Test login 
+- [x] Run mix.test 
+- [x] Add migrations (intervals, periods)
+- [x] New Contexts from scratch (intervals, periods)
+- [x] Refactor Schemas and Contexts 
+- [x] Learn SSG 
+- [x] Install domo favicon
+- [x] Install pocket navbar 
+- [x] Install pocket page styling 
+- [x] Edit home page contents 
 
 ## Next Steps
 
