@@ -29,6 +29,22 @@ let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToke
 topbar.config({barColors: {0: "#29d"}, shadowColor: "rgba(0, 0, 0, .3)"})
 window.addEventListener("phx:page-loading-start", _info => topbar.show(300))
 window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
+window.addEventListener("phx:page-loading-start", _info => topbar.show())
+window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
+window.addEventListener("phx:newtitle", (e) => {
+  var txt = e.detail.title
+  var tag = document.getElementById('title')
+  tag.innerHTML = txt
+})
+window.addEventListener("phx:newfav", (e) => {
+  var color = e.detail.color
+  var tag = document.getElementById('favicon')
+  tag.href = `/assets/img/favicon-${color}.ico`
+})
+window.addEventListener("beforeunload", (_e) => {
+  var fabtag = document.getElementById('favicon')
+  fabtag.href = "/assets/img/favicon-black.ico"
+})
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()

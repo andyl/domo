@@ -3,7 +3,7 @@
 ## Revamp 
 
 - [ ] Enable dynamic favicon 
-- [ ] Test on mobile 
+- [ ] Update title and favicon for hidden tab 
 
 ## SSG 
 

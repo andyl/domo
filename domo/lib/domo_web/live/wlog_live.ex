@@ -67,12 +67,12 @@ defmodule DomoWeb.WlogLive do
             <table class="min-w-full divide-y divide-gray-300">
               <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">period</th>
-                  <th scope="col">headline</th>
-                  <th scope="col">started at</th>
-                  <th scope="col">status</th>
-                  <th scope="col"></th>
+                  <th scope="col" class="pl-3 text-left">#</th>
+                  <th scope="col" class="pl-3 text-left">period</th>
+                  <th scope="col" class="pl-3 text-left">headline</th>
+                  <th scope="col" class="pl-3 text-left">started</th>
+                  <th scope="col" class="pl-3 text-left">status</th>
+                  <th scope="col" class="pl-3 text-left"></th>
                 </tr>
               </thead>
               <tbody class="divide-y divide-gray-200">
@@ -141,22 +141,24 @@ defmodule DomoWeb.WlogLive do
     oldklas = socket.assigns.sec_klas
     newklas = secs |> Util.Seconds.klas()
 
-    if oldklas != newklas do
-      send(self(), {"newfav", newklas})
-    end
+    if oldklas != newklas, do: send(self(), {"newfav", newklas})
+    send(self(), {"newtitle", title(secs)})
 
     opts = [
       s_count: secs,
       sec_str: sec_to_str(secs),
-      sec_klas: newklas,
-      page_title: title(secs)
+      sec_klas: newklas
     ]
 
     {:noreply, assign(socket, opts)}
   end
 
-  def handle_info({"newfav", newklas}, socket) do
-    {:noreply, push_event(socket, "newfav", %{color: newklas})}
+  def handle_info({"newfav", newcolor}, socket) do
+    {:noreply, push_event(socket, "newfav", %{color: newcolor})}
+  end
+
+  def handle_info({"newtitle", newtitle}, socket) do
+    {:noreply, push_event(socket, "newtitle", %{title: newtitle})}
   end
 
   # ----- view helpers
@@ -186,6 +188,6 @@ defmodule DomoWeb.WlogLive do
 
   def title(secs) do
     str = secs |> sec_to_str()
-    "Domo #{str}"
+    "#{str} Domo"
   end
 end

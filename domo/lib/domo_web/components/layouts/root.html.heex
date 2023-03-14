@@ -4,13 +4,34 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
-    <.live_title suffix="">
-      <%= assigns[:page_title] || "Domo" %>
-    </.live_title>
+    <title id='title'>DOMO</title>
+    <link id='favicon' rel='icon' type='image/x-icon' href={~p"/assets/img/favicon.ico"} />
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
-      <link id='favicon' rel='icon' type='image/x-icon' href='/img/favicon-black.iso' />
     </script>
+    <style>
+      a:focus { color: #0069d9; }
+      .black {
+        background: lightgray; 
+        color: black;
+      }
+      .green {
+        background: black; 
+        color: lightgreen;
+      }
+      .yellow {
+        background: black; 
+        color: yellow;
+      }
+      .magenta {
+        background: black; 
+        color: magenta;
+      }
+      .red {
+        background: black; 
+        color: red;
+      }
+    </style>
   </head>
   <body class="bg-white antialiased">
     <div class="flex pt-5 px-10">
