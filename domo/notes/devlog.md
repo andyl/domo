@@ -1,56 +1,12 @@
 # Domo Devlog 
 
-## Revamp 
-
-- [ ] Enable dynamic favicon 
-- [ ] Update title and favicon for hidden tab 
-
-## SSG 
-
-Learn 
-- [ ] Next.js 
-- [ ] HeadlessUI 
-- [ ] ReactJS 
-- [ ] Elixir | Nimble Publisher 
-- [ ] Elixir | Catalog 
-
-Ideas 
-- [ ] GTD Markup 
-- [ ] Integrated into worklog, pomodoro, notes 
-- [ ] Static site generators 
-- [ ] Phone, Text, Web 
-
-GTD Tags 
-- Status   | - [_] {'_' = ' ', 'I', 'A'
-- Priority | -H, -M, -L
-- ID       | !xyza
-- Context  | @gar
-- Project  | /x/y/z
-- Title    | This is the title
-- Tag      | %Bing %Bong
-
-Vim Integration 
-- Sorting 
-- Grouping 
-- Autocomplete 
-
-
-Worklog 
-```
-# Week Beginning 
-
-## 2023 Mar 13 Mon
-
-### Title 
-
-/x/y/x %development %exploration 
-
-Notes go there  
-
-- [ ] -H @gar Give help 
-```
-
 ## Roadmap
+
+Editing / Forms 
+- [ ] Form for editing events (Modal?)
+- [ ] Add notes to an event 
+- [ ] Add projects 
+- [ ] Add tags 
 
 Database
 - [ ] Tags: `periods <- period_tags -> tags`
@@ -59,17 +15,12 @@ Database
 Testing
 - [ ] Get tests for counter working 
 
-Issues
-- [ ] Why 3 alert rings?
-
 Integration
 - [ ] Get headline edit function working with PLE
 
-MultiScreen Sync
-- [ ] Broadcast: tick-1, startperiod-1, editheadline-1
-
 UI 
 - [ ] Style with Tailwind 
+- [ ] Styling for narrow devices
 
 Clients
 - [ ] Cli Client 
@@ -244,6 +195,11 @@ Deploy
 - [x] Install table view 
 - [x] Get counter-clock working 
 - [x] Enable dynamic page title (countdown) 
+
+## 2023 Mar 14 Tue
+
+- [x] Enable dynamic favicon 
+- [x] Update title and favicon for hidden tab 
 
 ## Next Steps
 

@@ -39,6 +39,7 @@ window.addEventListener("phx:newtitle", (e) => {
 window.addEventListener("phx:newfav", (e) => {
   var color = e.detail.color
   var tag = document.getElementById('favicon')
+  console.log(color)
   tag.href = `/assets/img/favicon-${color}.ico`
 })
 window.addEventListener("beforeunload", (_e) => {

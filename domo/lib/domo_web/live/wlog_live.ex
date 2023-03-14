@@ -49,7 +49,7 @@ defmodule DomoWeb.WlogLive do
   def render(assigns) do
     ~H"""
     <div>
-      <div class={@sec_klas} style="text-align: center; padding: 0 10px 0 10px;">
+      <div class={@sec_klas} style="margin-top: 20px; text-align: center;">
         <b>
           <%= @sec_str %>
         </b>
