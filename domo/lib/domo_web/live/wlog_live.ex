@@ -19,7 +19,6 @@ defmodule DomoWeb.WlogLive do
       sec_str: "",
       sec_klas: nil,
       s_count: 0,
-      page_title: "Domo",
       session_id: session["live_socket_id"],
       periods: periods,
       edit_period: nil,
@@ -33,6 +32,8 @@ defmodule DomoWeb.WlogLive do
     uid = socket.assigns[:current_user].id
     iseq = sseq |> String.to_integer()
     period = Ctx.Users.get_user_period(uid, iseq)
+
+    IO.inspect(period, label: "PERIODDDD")
 
     case period do
       nil -> {:noreply, socket}
@@ -50,12 +51,14 @@ defmodule DomoWeb.WlogLive do
     ~H"""
     <div>
       <div class={@sec_klas} style="margin-top: 20px; text-align: center;">
+      <.icon name="hero-pencil"/>
+      <.icon name="hero-trash"/>
         <b>
           <%= @sec_str %>
         </b>
       </div>
 
-      <section class="container bg-gray-200 flex p-10 items-center justify-between">
+      <section class="container bg-gray-200 flex p-2 items-center justify-between">
         <%= for int <- Domo.Util.Interval.all() do %>
           <.start_link text={int.text} label={int.label} secs={int.seconds} />
         <% end %>

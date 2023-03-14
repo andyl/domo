@@ -1,0 +1,23 @@
+<div>
+  <h2>#<%= @period.sequence %> - <%= Domo.Util.Interval.short_label_for(@period.seconds) %> - <%= @period.status %></h2>
+
+  <.form
+    let={f}
+    for={@changeset}
+    id="period-form"
+    phx-target={@myself}
+    phx-submit="save">
+  
+    <%= label f, :headline %>
+    <%= text_input f, :headline %>
+    <%= error_tag f, :headline %>
+  
+    <%= label f, :notes %>
+    <%= textarea f, :notes, style: "height: 300px;" %>
+    <%= error_tag f, :notes %>
+  
+    <div>
+      <%= submit "Save", phx_disable_with: "Saving..." %>
+    </div>
+  </.form>
+</div>

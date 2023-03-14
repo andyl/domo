@@ -54,6 +54,7 @@ defmodule Domo.Repo.Migrations.CreateUsersAuthTables do
       add :status, :string
       add :notes, :string
       add :tags, :string
+      add :projects, :string
       add :user_id, references(:users, on_delete: :nothing)
 
       timestamps()

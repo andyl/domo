@@ -9,7 +9,9 @@ Editing / Forms
 - [ ] Add tags 
 
 Database
-- [ ] Tags: `periods <- period_tags -> tags`
+- [ ] Tags: 
+- [ ] Notes: 
+- [ ] Projects: 
 - [ ] CubDB: preserve counter between restarts
 
 Testing
