@@ -51,8 +51,6 @@ defmodule DomoWeb.WlogLive do
     ~H"""
     <div>
       <div class={@sec_klas} style="margin-top: 20px; text-align: center;">
-      <.icon name="hero-pencil"/>
-      <.icon name="hero-trash"/>
         <b>
           <%= @sec_str %>
         </b>
@@ -94,7 +92,10 @@ defmodule DomoWeb.WlogLive do
                       <%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %>
                     </td>
                     <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><%= p.status %></td>
-                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"></td>
+                  <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                    <.icon name="hero-pencil-mini" class="hover:text-blue-500"/>
+                    <.icon name="hero-trash-mini"  class="hover:text-blue-500"/>
+                  </td>
                   </tr>
                 <% end %>
               </tbody>

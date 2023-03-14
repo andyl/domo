@@ -3,6 +3,7 @@
 ## Roadmap
 
 Editing / Forms 
+- [x] Add HeroIcons
 - [ ] Form for editing events (Modal?)
 - [ ] Add notes to an event 
 - [ ] Add projects 
