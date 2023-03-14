@@ -1,0 +1,50 @@
+<div>
+
+  <section class="container" style="padding: 10px; background-color: lightgray; display: flex; justify-content: space-between; align-items: center;">
+    <%= for int <- Domo.Util.Interval.all() do %> 
+      <.start_link text={int.text} label={int.label} secs={int.seconds} />
+    <% end %>
+  </section>
+  
+  <%= if @edit_period do %>
+    <.modal return_to={Routes.wlog_path(@socket, :index)}>
+      <.live_component
+        module={DomoWeb.WlogLive.FormComponent}
+        id={@edit_period.id}
+        title={@page_title}
+        action={@live_action}
+        period={@edit_period}
+        return_to={Routes.wlog_path(@socket, :index)}
+      />
+    </.modal>
+  <% end %>
+
+  <section class="container">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>period</th>
+          <th>headline</th>
+          <th>started at</th>
+          <th>status</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= for p <- @periods do %>
+          <tr>
+            <td><%= p.sequence %></td>
+            <td><%= p.seconds |> Domo.Util.Interval.short_label_for() %></td> 
+            <td><%= p.headline || "na" %><%= DomoWeb.WlogLive.note_tag(p.notes) %></td>
+            <td><%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %></td>
+            <td><%= p.status %></td>
+            <td>
+              <%= live_patch "Edit", to: Routes.wlog_path(@socket, :edit, p.sequence) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </section>
+</div>
