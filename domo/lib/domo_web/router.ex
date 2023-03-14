@@ -21,13 +21,6 @@ defmodule DomoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/count", PageController, :count
-  end
-
-  scope "/tlog", DomoWeb do
-    pipe_through [:browser, :require_authenticated_user]
-    live "/", TlogLive, :index
-    live "/:id/edit", TlogLive, :edit
   end
 
   scope "/wlog", DomoWeb do

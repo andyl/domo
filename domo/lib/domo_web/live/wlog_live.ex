@@ -3,12 +3,10 @@ defmodule DomoWeb.WlogLive do
 
   alias Domo.Counter
   alias Domo.Ctx
-  import DomoWeb.WlogComponent
-  # import DomoWeb.LiveHelpers
-  #
-  # alias DomoWeb.Router.Helpers, as: Routes
-  #
-  # # ----- lifecycle callbacks
+  # import DomoWeb.WlogComponent
+
+  # ----- lifecycle callbacks
+
   def mount(_params, session, socket) do
     user = Ctx.Accounts.get_user_by_session_token(session["user_token"])
     uid = user.id |> Integer.to_string()
@@ -17,15 +15,15 @@ defmodule DomoWeb.WlogLive do
     Phoenix.PubSub.subscribe(Domo.PubSub, uid)
 
     opts = %{
-        tz: get_tz(socket),
-        sec_str: "",
-        sec_klas: nil,
-        s_count: 0,
-        page_title: "Domo",
-        session_id: session["live_socket_id"],
-        periods: periods,
-        edit_period: nil,
-        current_user: user
+      tz: get_tz(socket),
+      sec_str: "",
+      sec_klas: nil,
+      s_count: 0,
+      page_title: "Domo",
+      session_id: session["live_socket_id"],
+      periods: periods,
+      edit_period: nil,
+      current_user: user
     }
 
     {:ok, assign(socket, opts)}
@@ -51,41 +49,74 @@ defmodule DomoWeb.WlogLive do
   def render(assigns) do
     ~H"""
     <div>
-      <section
-        class="container"
-        style="padding: 10px; background-color: lightgray; display: flex; justify-content: space-between; align-items: center;"
-      >
+      <div class={@sec_klas} style="text-align: center; padding: 0 10px 0 10px;">
+        <b>
+          <%= @sec_str %>
+        </b>
+      </div>
+
+      <section class="container bg-gray-200 flex p-10 items-center justify-between">
         <%= for int <- Domo.Util.Interval.all() do %>
           <.start_link text={int.text} label={int.label} secs={int.seconds} />
         <% end %>
       </section>
 
-      <section class="container">
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>period</th>
-              <th>headline</th>
-              <th>started at</th>
-              <th>status</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <%= for p <- @periods do %>
-              <tr>
-                <td><%= p.sequence %></td>
-                <td><%= p.seconds |> Domo.Util.Interval.short_label_for() %></td>
-                <td><%= p.headline || "na" %><%= DomoWeb.WlogLive.note_tag(p.notes) %></td>
-                <td><%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %></td>
-                <td><%= p.status %></td>
-                <td></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </section>
+      <div class="mt-8 flow-root">
+        <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+          <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">period</th>
+                  <th scope="col">headline</th>
+                  <th scope="col">started at</th>
+                  <th scope="col">status</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <%= for p <- @periods do %>
+                  <tr>
+                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                      <%= p.sequence %>
+                    </td>
+                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                      <%= p.seconds |> Domo.Util.Interval.short_label_for() %>
+                    </td>
+                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                      <%= p.headline || "na" %><%= DomoWeb.WlogLive.note_tag(p.notes) %>
+                    </td>
+                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+                      <%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %>
+                    </td>
+                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><%= p.status %></td>
+                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    """
+  end
+
+  # ----- local components
+
+  attr :secs, :integer
+  attr :text, :string
+  attr :label, :string
+
+  def start_link(assigns) do
+    ~H"""
+    <div style="text-align: center;">
+      <a class="text-blue-600" href="#" phx-click="start-period" phx-value-secs={@secs}>
+        <%= @text %>
+      </a>
+      <br />
+      <small><%= @label %></small>
     </div>
     """
   end

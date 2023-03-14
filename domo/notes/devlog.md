@@ -2,12 +2,7 @@
 
 ## Revamp 
 
-- [ ] Build wlog page 
-
-- [ ] Install table view 
-- [ ] Get counter-clock working 
 - [ ] Enable dynamic favicon 
-- [ ] Enable dynamic page title (countdown) 
 - [ ] Test on mobile 
 
 ## SSG 
@@ -245,6 +240,10 @@ Deploy
 - [x] Install pocket navbar 
 - [x] Install pocket page styling 
 - [x] Edit home page contents 
+- [x] Build wlog page 
+- [x] Install table view 
+- [x] Get counter-clock working 
+- [x] Enable dynamic page title (countdown) 
 
 ## Next Steps
 
