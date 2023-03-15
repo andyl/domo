@@ -2,26 +2,49 @@
 
 ## Roadmap
 
-Editing / Forms 
-- [x] Add HeroIcons
-- [ ] Form for editing events (Modal?)
-- [ ] Add notes to an event 
-- [ ] Add projects 
-- [ ] Add tags 
+UI
+- [x] Cancel 
+- [x] Save 
+- [x] Next 
+- [x] Prev 
 
-Testing
-- [ ] Get tests for counter working 
+API 
+- [x] top_period?(periods, period)
+- [x] prev_period(periods, period) 
+- [x] next_period(periods, period) 
+- [x] bottom_period(periods, period) 
+
+Behavior / Styling 
+- [x] Consistent width 
+- [x] Edit period on starting 
+- [x] Icon on titlebar 
+- [x] Use Colored SVG (HeroIcons) as favicon
+- [ ] Countdown on titlebar 
+- [ ] Colored Icon on titlebar 
+- [ ] Show countdown on active period 
+
+Events 
+- [x] edit_cancel 
+- [x] edit_next
+- [x] edit_prev 
+- [ ] edit_validate 
+- [ ] edit_save 
+
+Styling 
+- [ ] Wide table
 
 UI 
 - [ ] Style with Tailwind 
 - [ ] Styling for narrow devices
 - [ ] Add keyboard navigation 
-- [ ] Use SVG (HeroIcons) as favicon
 
 Use SVG (HeroIcons) as favicon
 - https://css-tricks.com/svg-favicons-and-all-the-fun-things-we-can-do-with-them/
 - https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df
 - https://www.youtube.com/watch?v=RO31yOt6QsU
+
+Testing
+- [ ] Get tests for counter working 
 
 Clients
 - [ ] Cli Client 
@@ -53,10 +76,6 @@ Tag Behavior
 - [ ] Communication Prefs (phone, SMS)
 - [ ] Project Prefs (github project, customer)
 - [ ] Atree Prefs (which action tree)
-
-Cleanup
-- [ ] Remove V1
-- [ ] Remove termato 
 
 Features
 - [ ] Add import/export
@@ -199,10 +218,19 @@ Deploy
 
 ## 2023 Mar 14 Tue
 
+Misc
 - [x] Enable dynamic favicon 
 - [x] Update title and favicon for hidden tab 
 
-## Next Steps
+Editing / Forms 
+- [x] Add HeroIcons
+- [x] Form for editing events (Modal?)
+- [x] Add notes to an event 
+- [x] Add projects 
+- [x] Add tags 
 
-- [ ] Headline in title "<headline> 07m 22s"
+Cleanup
+- [x] Remove V1
+- [x] Remove termato 
+
 

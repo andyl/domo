@@ -3,7 +3,6 @@ defmodule DomoWeb.WlogLive do
 
   alias Domo.Counter
   alias Domo.Ctx
-  # import DomoWeb.WlogComponent
 
   # ----- lifecycle callbacks
 
@@ -29,9 +28,7 @@ defmodule DomoWeb.WlogLive do
     {:ok, assign(socket, opts)}
   end
 
-  def handle_params(%{"edit" => pseq} = tgt, _uri, socket) do
-    IO.inspect(tgt, label: "TGT")
-    IO.inspect(pseq, label: "PSEQ")
+  def handle_params(%{"edit" => pseq}, _uri, socket) do
     uid = socket.assigns[:current_user].id
     iseq = String.to_integer(pseq)
     period = Ctx.Users.get_user_period(uid, iseq)
@@ -51,8 +48,7 @@ defmodule DomoWeb.WlogLive do
     {:noreply, assign(socket, opts)}
   end
 
-  def handle_params(tgt, _uri, socket) do
-    IO.inspect(tgt, label: "HPTGT")
+  def handle_params(_tgt, _uri, socket) do
     opts = %{
       edit_period: nil,
       changeset: nil
@@ -83,26 +79,15 @@ defmodule DomoWeb.WlogLive do
           <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <table class="min-w-full divide-y divide-gray-300">
               <thead>
-                <tr>
-                  <th scope="col" class="pl-3 text-left">#</th>
-                  <th scope="col" class="pl-3 text-left">period</th>
-                  <th scope="col" class="pl-3 text-left">headline</th>
-                  <th scope="col" class="pl-3 text-left">started</th>
-                  <th scope="col" class="pl-3 text-left">status</th>
-                  <th scope="col" class="pl-3 text-left"></th>
-                </tr>
               </thead>
               <tbody class="divide-y divide-gray-200">
                 <%= for p <- @periods do %>
                   <%= if @edit_period && @edit_period.id == p.id do %>
-                    <.period_edit period={p} tz={@tz} changeset={@changeset} />
+                    <.period_edit periods={@periods} period={p} tz={@tz} changeset={@changeset} />
                   <% else %>
                     <.period_show period={p} tz={@tz} />
                   <% end %>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
+                <% end %> </tbody> </table> </div>
         </div>
       </div>
     </div>
@@ -118,7 +103,7 @@ defmodule DomoWeb.WlogLive do
   def start_link(assigns) do
     ~H"""
     <div style="text-align: center;">
-      <a class="text-blue-600" href="#" phx-click="start-period" phx-value-secs={@secs}>
+      <a class="text-blue-600" href="#" phx-click="start_period" phx-value-secs={@secs}>
         <%= @text %>
       </a>
       <br />
@@ -133,68 +118,98 @@ defmodule DomoWeb.WlogLive do
   def period_show(assigns) do
     ~H"""
     <tr class="hover:bg-gray-100">
-      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      <.td_show period={@period}>
         <%= @period.sequence %>
-      </td>
-      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      </.td_show>
+      <.td_show period={@period}>
         <%= @period.seconds |> Domo.Util.Interval.short_label_for() %>
-      </td>
-      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      </.td_show>
+      <.td_show period={@period}>
         <%= @period.headline || "na" %><%= DomoWeb.WlogLive.note_tag(@period.notes) %>
-      </td>
-      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      </.td_show>
+      <.td_show period={@period}>
         <%= @period.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %>
-      </td>
-      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+      </.td_show>
+      <.td_show period={@period}>
         <%= @period.status %>
-      </td>
-      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-        <.link phx-click="edit_period" phx-value-pseq={@period.sequence}>
-          <.icon name="hero-pencil-mini" class="hover:text-blue-500" />
-        </.link>
+      </.td_show>
+      <.td_show period={@period} noselect={true}>
         <.link phx-click="delete_period" phx-value-pseq={@period.sequence}>
           <.icon name="hero-trash-mini" class="hover:text-blue-500" />
         </.link>
-      </td>
+      </.td_show>
     </tr>
     """
   end
 
+  attr :period, :any, required: true
+  attr :noselect, :boolean, default: false
+  slot :inner_block, required: true
+  def td_show(assigns) do
+    opts = case assigns[:noselect] do
+      true -> %{target: nil, pseq: nil}
+      false -> %{target: "edit_period", pseq: assigns[:period].sequence}
+    end
+    assigns = assign(assigns, opts)
+    ~H"""
+    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"
+        phx-click={@target} phx-value-pseq={@pseq}>
+    <span class="hover:cursor-pointer"><%= render_block(@inner_block) %></span>
+    </td>
+    """
+  end
+
+  attr :periods, :any
   attr :period, :map
   attr :changeset, :any
   attr :tz, :any
 
   def period_edit(assigns) do
     assigns = assign(assigns, :form, to_form(assigns[:changeset]))
+
     ~H"""
     <tr>
-    <td class="bg-gray-200" colspan="6">
-    <div class="text-center">
-    #<%= @period.sequence %> |
-    <%= @period.seconds |> Domo.Util.Interval.short_label_for() %> |
-    <%= @period.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %> |
-    <%= @period.status %>
-    </div>
-    <div>
-    <.simple_form for={@form} phx-change="validate" phx-submit="save">
-        <.input field={@form[:title]} label="Title"/>
-        <.input field={@form[:notes]} type="textarea" label="Notes" />
-        <.input field={@form[:project]} label="Project" />
-        <.input field={@form[:tags]} label="Tags" />
-        <:actions>
-          <.button>Save</.button>
-        </:actions>
-    </.simple_form>
-    <.button phx-click="cancel">Cancel</.button>
-    </div>
-    </td>
+      <td class="border-black p-2 border-2" colspan="6">
+        <div class="flex">
+          <div class="flex-1">
+            <%= @period.sequence %>
+            <button :if={Util.Period.unfirst?(@periods, @period)} phx-click="edit_prev">
+              <.icon name="hero-arrow-up-mini" class="hover:text-blue-500"/>
+            </button>
+            <button :if={Util.Period.unlast?(@periods, @period)} phx-click="edit_next">
+              <.icon name="hero-arrow-down-mini" class="hover:text-blue-500"/>
+            </button>
+          </div>
+          <div class="flex-1 whitespace-nowrap">
+            <%= @period.seconds |> Domo.Util.Interval.short_label_for() %> |
+            <%= @period.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %> |
+            <%= @period.status %>
+          </div>
+          <div class="flex-1 text-right">
+            <button phx-click="edit_cancel">
+              <.icon name="hero-x-circle" class="hover:text-blue-500"/>
+            </button>
+          </div>
+        </div>
+        <div>
+          <.simple_form for={@form} phx-change="validate" phx-submit="save">
+            <.input field={@form[:title]} label="Title" />
+            <.input field={@form[:notes]} type="textarea" label="Notes" />
+            <.input field={@form[:project]} label="Project" />
+            <.input field={@form[:tags]} label="Tags" />
+            <:actions>
+              <.button class="object-right">Save</.button>
+            </:actions>
+          </.simple_form>
+        </div>
+      </td>
     </tr>
     """
   end
 
   # ----- event handlers
 
-  def handle_event("start-period", %{"secs" => dsecs} = _data, socket) do
+  def handle_event("start_period", %{"secs" => dsecs} = _data, socket) do
     secs = dsecs |> String.to_integer()
     cuid = socket.assigns[:current_user].id
 
@@ -202,13 +217,18 @@ defmodule DomoWeb.WlogLive do
     Counter.start(cuid, secs)
 
     periods = Ctx.Users.get_user_periods(cuid)
+    period = List.first(periods)
 
-    {:noreply, assign(socket, :periods, periods)}
-  end
+    opts = %{
+      periods: periods,
+      edit_period: period,
+      changeset: Util.Period.changeset(period)
+    }
 
-  def handle_event("edit_period", %{"pseq" => pseq}, socket) do
-    opts = [{"edit", pseq}]
-    {:noreply, push_patch(socket, to: ~p"/wlog?#{opts}")}
+    newsock = assign(socket, opts)
+    params = [{"edit", period.sequence}]
+
+    {:noreply, push_patch(newsock, to: ~p"/wlog?#{params}")}
   end
 
   def handle_event("delete_period", %{"pseq" => pseq}, socket) do
@@ -221,6 +241,37 @@ defmodule DomoWeb.WlogLive do
     }
 
     {:noreply, assign(socket, opts)}
+  end
+
+  def handle_event("edit_period", %{"pseq" => pseq}, socket) do
+    params = [{"edit", pseq}]
+    {:noreply, push_patch(socket, to: ~p"/wlog?#{params}")}
+  end
+
+  def handle_event("edit_cancel", _data, socket) do
+    {:noreply, push_patch(socket, to: ~p"/wlog")}
+  end
+
+  def handle_event("edit_next", _data, socket) do
+    periods = socket.assigns.periods
+    period  = socket.assigns.edit_period
+    next = Util.Period.next(periods, period)
+    params = [{"edit", next.sequence}]
+    {:noreply, push_patch(socket, to: ~p"/wlog?#{params}")}
+  end
+
+  def handle_event("edit_prev", _data, socket) do
+    periods = socket.assigns.periods
+    period  = socket.assigns.edit_period
+    prev = Util.Period.prev(periods, period)
+    params = [{"edit", prev.sequence}]
+    {:noreply, push_patch(socket, to: ~p"/wlog?#{params}")}
+  end
+
+  def handle_event("edit_save", data, socket) do
+    IO.inspect("edit_save", label: "TARGET")
+    IO.inspect(data, label: "DATA")
+    {:noreply, socket}
   end
 
   def handle_event(target, data, socket) do

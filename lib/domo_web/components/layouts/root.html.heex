@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="csrf-token" content={get_csrf_token()} />
     <title id='title'>DOMO</title>
-    <link id='favicon' rel='icon' type='image/x-icon' href={~p"/images/favicon.ico"} />
+    <link id='favicon' rel='icon' href={~p"/images/icon-black.svg"} />
     <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
     <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
     </script>
@@ -34,9 +34,10 @@
     </style>
   </head>
   <body class="bg-white antialiased">
-    <div class="flex pt-5 px-10">
+    <div class="flex pt-5 mx-auto max-w-2xl">
       <div class="inline flex-auto">
-        <.link href="/" class="hover:text-blue-400">DOMO</.link>
+        <img src="/images/icon-black.svg" class="h-8 w-8 inline" alt="">
+        <.link href="/" class="hover:text-blue-400">Domo</.link>
       </div>
       <div class="inline">
         <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
