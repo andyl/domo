@@ -14,6 +14,22 @@ defmodule DomoWeb.CoreComponents do
   import DomoWeb.Gettext
 
   @doc """
+  Renders the logo
+  """
+  attr :sec_str, :string, default: ""
+  attr :sec_klas, :string, default: "black"
+
+  def live_logo(assigns) do
+    ~H"""
+    <div class="inline flex-auto">
+      <img src={"/images/icon-#{@sec_klas}.svg"} class="h-6 w-6 inline" >
+      <%= @sec_str %>
+      <.link href="/" class="hover:text-blue-400">Domo</.link>
+    </div>
+    """
+  end
+
+  @doc """
   Renders a modal.
 
   ## Examples

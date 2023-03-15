@@ -62,19 +62,13 @@ defmodule DomoWeb.WlogLive do
   def render(assigns) do
     ~H"""
     <div>
-      <div class={@sec_klas} style="margin-top: 20px; text-align: center;">
-        <b>
-          <%= @sec_str %>
-        </b>
-      </div>
-
-      <section class="container bg-gray-200 flex p-2 items-center justify-between">
+      <section class="container bg-gray-200 flex px-4 py-1 mt-2 items-center justify-between">
         <%= for int <- Domo.Util.Interval.all() do %>
           <.start_link text={int.text} label={int.label} secs={int.seconds} />
         <% end %>
       </section>
 
-      <div class="mt-8 flow-root">
+      <div class="mt-2 flow-root">
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <table class="min-w-full divide-y divide-gray-300">
