@@ -2,10 +2,17 @@
 
 ## Roadmap
 
-Validation and Saving 
+Fixes: Validation and Saving 
 - [ ] Fix Broken Tests 
 - [ ] Fix field erasure when changing fields 
 - [ ] Fix flow when saving records - use a flash message
+
+Fixes: Features 
+- [ ] Time in local time 
+- [ ] Have a status:"TRASHED" instead of deleting items
+- [ ] Have a trash folder 
+- [ ] Be able to empty trash 
+- [ ] Export periods in CSV 
 
 UI 
 - [ ] Style form with Tailwind 
