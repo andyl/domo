@@ -46,7 +46,7 @@ defmodule Domo.Repo.Migrations.CreateUsersAuthTables do
     # ----- periods
 
     create table(:periods) do
-      add :headline, :string
+      add :title, :string
       add :seconds, :integer
       add :sequence, :integer
       add :start_at, :utc_datetime

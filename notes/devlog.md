@@ -2,46 +2,17 @@
 
 ## Roadmap
 
-UI
-- [x] Cancel 
-- [x] Save 
-- [x] Next 
-- [x] Prev 
-
-API 
-- [x] top_period?(periods, period)
-- [x] prev_period(periods, period) 
-- [x] next_period(periods, period) 
-- [x] bottom_period(periods, period) 
-
-Behavior / Styling 
-- [x] Consistent width 
-- [x] Edit period on starting 
-- [x] Icon on titlebar 
-- [x] Use Colored SVG (HeroIcons) as favicon
-- [ ] Countdown on titlebar 
-- [ ] Colored Icon on titlebar 
-- [ ] Show countdown on active period 
-
-Events 
-- [x] edit_cancel 
-- [x] edit_next
-- [x] edit_prev 
-- [ ] edit_validate 
-- [ ] edit_save 
-
-Styling 
-- [ ] Wide table
+Validation and Saving 
+- [ ] Fix field erasure when changing fields 
+- [ ] Fix flow when saving records - use a flash message
 
 UI 
-- [ ] Style with Tailwind 
+- [ ] Style form with Tailwind 
 - [ ] Styling for narrow devices
-- [ ] Add keyboard navigation 
 
-Use SVG (HeroIcons) as favicon
-- https://css-tricks.com/svg-favicons-and-all-the-fun-things-we-can-do-with-them/
-- https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df
-- https://www.youtube.com/watch?v=RO31yOt6QsU
+Keyboard Nav 
+- [ ] j/k -> up/down 
+- [ ] escape -> close edit window 
 
 Testing
 - [ ] Get tests for counter working 
@@ -233,4 +204,39 @@ Cleanup
 - [x] Remove V1
 - [x] Remove termato 
 
+UI
+- [x] Cancel 
+- [x] Save 
+- [x] Next 
+- [x] Prev 
+
+API 
+- [x] top_period?(periods, period)
+- [x] prev_period(periods, period) 
+- [x] next_period(periods, period) 
+- [x] bottom_period(periods, period) 
+
+Behavior / Styling 
+- [x] Consistent width 
+- [x] Edit period on starting 
+- [x] Icon on titlebar 
+- [x] Use Colored SVG (HeroIcons) as favicon
+- [x] Countdown on titlebar 
+- [x] Colored Icon on titlebar 
+- [ ] Show countdown on active period 
+
+Events 
+- [x] edit_cancel 
+- [x] edit_next
+- [x] edit_prev 
+- [x] edit_validate 
+- [x] edit_save 
+
+Styling 
+- [x] Wide table
+
+Use SVG (HeroIcons) as favicon
+- https://css-tricks.com/svg-favicons-and-all-the-fun-things-we-can-do-with-them/
+- https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df
+- https://www.youtube.com/watch?v=RO31yOt6QsU
 

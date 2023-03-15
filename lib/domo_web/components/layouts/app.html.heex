@@ -1,6 +1,10 @@
 <div>
   <div class="flex pt-5 mx-auto max-w-2xl">
+    <%= if assigns[:sec_str] && assigns[:sec_klas] do %>
     <.live_logo sec_str={@sec_str} sec_klas={@sec_klas} />
+    <% else %>
+    <.live_logo />
+    <% end %>
     <div class="inline">
       <ul class="relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
         <%= if @current_user do %>
