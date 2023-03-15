@@ -9,7 +9,17 @@ defmodule Domo.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+
+      # Docs
+      name: "Domo",
+      source_url: "https://github.com/andyl/domo",
+      homepage_url: "http://TBD",
+      docs: [
+        main: "Domo",
+        # logo: "priv/static/images/favicon.ico",
+        extras: ["README.md"]
+      ]
     ]
   end
 
@@ -33,7 +43,7 @@ defmodule Domo.MixProject do
   defp deps do
     [
       {:bcrypt_elixir, "~> 3.0"},
-      # ----- web
+      # Web
       {:phoenix, "~> 1.7.1"},
       {:phoenix_ecto, "~> 4.4"},
       {:phoenix_html, "~> 3.3"},
@@ -44,13 +54,15 @@ defmodule Domo.MixProject do
       {:tailwind, "~> 0.1.8", runtime: Mix.env() == :dev},
       {:plug_cowboy, "~> 2.5"},
       {:gettext, "~> 0.20"},
-      # ----- database
+      # Database
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      # ----- telemetry
+      # Telemetry
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
-      # ----- misc
+      # Documentation
+      {:ex_doc, "~> 0.27", only: :dev, runtime: false},
+      # Misc
       {:floki, ">= 0.30.0", only: :test},
       {:swoosh, "~> 1.3"},
       {:finch, "~> 0.13"},

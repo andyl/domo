@@ -9,7 +9,7 @@ defmodule Domo.Ctx.Users do
   alias Domo.Sch.Users.Period
 
   @doc """
-  Get all periods for a user.
+  Get one period for a user.
   """
   def get_user_period(user_id, seq) when is_integer(user_id) do
     qry = from p in Period, where: p.user_id == ^user_id and p.sequence == ^seq, limit: 1
@@ -22,6 +22,14 @@ defmodule Domo.Ctx.Users do
   def get_user_periods(user_id) when is_integer(user_id) do
     query = from p in Period, where: p.user_id == ^user_id, order_by: [desc: :id]
     Repo.all(query)
+  end
+
+  @doc """
+  Delete one period for a user.
+  """
+  def delete_user_period(user_id, seq) when is_integer(user_id) do
+    qry = from p in Period, where: p.user_id == ^user_id and p.sequence == ^seq
+    Repo.delete_all(qry)
   end
 
   @doc """

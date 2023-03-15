@@ -25,8 +25,7 @@ defmodule DomoWeb.Router do
 
   scope "/wlog", DomoWeb do
     pipe_through [:browser, :require_authenticated_user]
-    live "/", WlogLive, :index
-    live "/:id/edit", WlogLive, :edit
+    live "/", WlogLive #, :index
   end
 
   # scope "/base", DomoWeb do

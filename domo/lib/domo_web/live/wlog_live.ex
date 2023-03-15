@@ -22,27 +22,43 @@ defmodule DomoWeb.WlogLive do
       session_id: session["live_socket_id"],
       periods: periods,
       edit_period: nil,
+      changeset: nil,
       current_user: user
     }
 
     {:ok, assign(socket, opts)}
   end
 
-  def handle_params(%{"id" => sseq}, _uri, socket) do
+  def handle_params(%{"edit" => pseq} = tgt, _uri, socket) do
+    IO.inspect(tgt, label: "TGT")
+    IO.inspect(pseq, label: "PSEQ")
     uid = socket.assigns[:current_user].id
-    iseq = sseq |> String.to_integer()
+    iseq = String.to_integer(pseq)
     period = Ctx.Users.get_user_period(uid, iseq)
 
-    IO.inspect(period, label: "PERIODDDD")
+    opts =
+      case period do
+        nil ->
+          %{}
 
-    case period do
-      nil -> {:noreply, socket}
-      result -> {:noreply, assign(socket, :edit_period, result)}
-    end
+        result ->
+          %{
+            edit_period: result,
+            changeset: Domo.Sch.Users.Period.changeset(period, %{})
+          }
+      end
+
+    {:noreply, assign(socket, opts)}
   end
 
-  def handle_params(%{}, _uri, socket) do
-    {:noreply, assign(socket, :edit_period, nil)}
+  def handle_params(tgt, _uri, socket) do
+    IO.inspect(tgt, label: "HPTGT")
+    opts = %{
+      edit_period: nil,
+      changeset: nil
+    }
+
+    {:noreply, assign(socket, opts)}
   end
 
   # ---- render
@@ -78,25 +94,11 @@ defmodule DomoWeb.WlogLive do
               </thead>
               <tbody class="divide-y divide-gray-200">
                 <%= for p <- @periods do %>
-                  <tr>
-                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                      <%= p.sequence %>
-                    </td>
-                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                      <%= p.seconds |> Domo.Util.Interval.short_label_for() %>
-                    </td>
-                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                      <%= p.headline || "na" %><%= DomoWeb.WlogLive.note_tag(p.notes) %>
-                    </td>
-                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                      <%= p.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %>
-                    </td>
-                    <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500"><%= p.status %></td>
-                  <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
-                    <.icon name="hero-pencil-mini" class="hover:text-blue-500"/>
-                    <.icon name="hero-trash-mini"  class="hover:text-blue-500"/>
-                  </td>
-                  </tr>
+                  <%= if @edit_period && @edit_period.id == p.id do %>
+                    <.period_edit period={p} tz={@tz} changeset={@changeset} />
+                  <% else %>
+                    <.period_show period={p} tz={@tz} />
+                  <% end %>
                 <% end %>
               </tbody>
             </table>
@@ -125,6 +127,71 @@ defmodule DomoWeb.WlogLive do
     """
   end
 
+  attr :period, :map
+  attr :tz, :any
+
+  def period_show(assigns) do
+    ~H"""
+    <tr class="hover:bg-gray-100">
+      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+        <%= @period.sequence %>
+      </td>
+      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+        <%= @period.seconds |> Domo.Util.Interval.short_label_for() %>
+      </td>
+      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+        <%= @period.headline || "na" %><%= DomoWeb.WlogLive.note_tag(@period.notes) %>
+      </td>
+      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+        <%= @period.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %>
+      </td>
+      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+        <%= @period.status %>
+      </td>
+      <td class="whitespace-nowrap py-4 px-3 text-sm text-gray-500">
+        <.link phx-click="edit_period" phx-value-pseq={@period.sequence}>
+          <.icon name="hero-pencil-mini" class="hover:text-blue-500" />
+        </.link>
+        <.link phx-click="delete_period" phx-value-pseq={@period.sequence}>
+          <.icon name="hero-trash-mini" class="hover:text-blue-500" />
+        </.link>
+      </td>
+    </tr>
+    """
+  end
+
+  attr :period, :map
+  attr :changeset, :any
+  attr :tz, :any
+
+  def period_edit(assigns) do
+    assigns = assign(assigns, :form, to_form(assigns[:changeset]))
+    ~H"""
+    <tr>
+    <td class="bg-gray-200" colspan="6">
+    <div class="text-center">
+    #<%= @period.sequence %> |
+    <%= @period.seconds |> Domo.Util.Interval.short_label_for() %> |
+    <%= @period.inserted_at |> DomoWeb.WlogLive.ldate(@tz) %> |
+    <%= @period.status %>
+    </div>
+    <div>
+    <.simple_form for={@form} phx-change="validate" phx-submit="save">
+        <.input field={@form[:title]} label="Title"/>
+        <.input field={@form[:notes]} type="textarea" label="Notes" />
+        <.input field={@form[:project]} label="Project" />
+        <.input field={@form[:tags]} label="Tags" />
+        <:actions>
+          <.button>Save</.button>
+        </:actions>
+    </.simple_form>
+    <.button phx-click="cancel">Cancel</.button>
+    </div>
+    </td>
+    </tr>
+    """
+  end
+
   # ----- event handlers
 
   def handle_event("start-period", %{"secs" => dsecs} = _data, socket) do
@@ -137,6 +204,29 @@ defmodule DomoWeb.WlogLive do
     periods = Ctx.Users.get_user_periods(cuid)
 
     {:noreply, assign(socket, :periods, periods)}
+  end
+
+  def handle_event("edit_period", %{"pseq" => pseq}, socket) do
+    opts = [{"edit", pseq}]
+    {:noreply, push_patch(socket, to: ~p"/wlog?#{opts}")}
+  end
+
+  def handle_event("delete_period", %{"pseq" => pseq}, socket) do
+    uid = socket.assigns.current_user.id
+    Ctx.Users.delete_user_period(uid, pseq)
+
+    opts = %{
+      periods: Ctx.Users.get_user_periods(uid),
+      edit_period: nil
+    }
+
+    {:noreply, assign(socket, opts)}
+  end
+
+  def handle_event(target, data, socket) do
+    IO.inspect(target, label: "TARGET")
+    IO.inspect(data, label: "DATA")
+    {:noreply, socket}
   end
 
   # ----- message handlers

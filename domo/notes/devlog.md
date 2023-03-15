@@ -9,21 +9,19 @@ Editing / Forms
 - [ ] Add projects 
 - [ ] Add tags 
 
-Database
-- [ ] Tags: 
-- [ ] Notes: 
-- [ ] Projects: 
-- [ ] CubDB: preserve counter between restarts
-
 Testing
 - [ ] Get tests for counter working 
-
-Integration
-- [ ] Get headline edit function working with PLE
 
 UI 
 - [ ] Style with Tailwind 
 - [ ] Styling for narrow devices
+- [ ] Add keyboard navigation 
+- [ ] Use SVG (HeroIcons) as favicon
+
+Use SVG (HeroIcons) as favicon
+- https://css-tricks.com/svg-favicons-and-all-the-fun-things-we-can-do-with-them/
+- https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df
+- https://www.youtube.com/watch?v=RO31yOt6QsU
 
 Clients
 - [ ] Cli Client 
