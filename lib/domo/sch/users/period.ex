@@ -23,6 +23,6 @@ defmodule Domo.Sch.Users.Period do
   def changeset(period, attrs) do
     period
     |> cast(attrs, [:title, :sequence, :seconds, :start_at, :end_at, :status, :notes, :projects, :tags])
-    |> validate_required([:sequence, :seconds, :start_at, :end_at, :status])
+    |> validate_required([:sequence, :seconds, :start_at, :status])
   end
 end

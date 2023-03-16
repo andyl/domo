@@ -197,8 +197,6 @@ defmodule DomoWeb.WlogLive do
           <.simple_form for={@form} phx-change="edit_validate" phx-submit="edit_save">
             <.input field={@form[:title]} label="Title" />
             <.input field={@form[:notes]} type="textarea" label="Notes" />
-            <.input field={@form[:projects]} label="Projects" />
-            <.input field={@form[:tags]} label="Tags" />
             <:actions>
               <.button class="object-right">Save</.button>
             </:actions>
@@ -270,23 +268,39 @@ defmodule DomoWeb.WlogLive do
     {:noreply, push_patch(socket, to: ~p"/wlog?#{params}")}
   end
 
-  def handle_event("edit_validate", _data, socket) do
-    # IO.inspect("edit_validate", label: "TARGET")
-    # IO.inspect(data, label: "DATA")
-    {:noreply, socket}
+  def handle_event("edit_validate", data, socket) do
+    period = socket.assigns.edit_period
+    args = data["period"]
+    opts = %{
+      changeset: Util.Period.changeset(period, args)
+    }
+    {:noreply, assign(socket, opts)}
   end
 
   def handle_event("edit_save", data, socket) do
-    IO.inspect("edit_save", label: "TARGET")
-    IO.inspect(data, label: "DATA")
     usrid = socket.assigns.current_user.id
     seq   = socket.assigns.edit_period.sequence
     args  = data["period"]
     Ctx.Users.update_user_period(usrid, seq, args)
+    newp = Ctx.Users.get_user_period(usrid, seq)
 
-    {:noreply, socket}
+    opts = %{
+      periods: Ctx.Users.get_user_periods(usrid),
+      edit_period: newp,
+      changeset: Domo.Sch.Users.Period.changeset(newp, %{})
+    }
+
+    new_sock =
+      socket
+      |> put_flash(:info, "SAVED!")
+      |> assign(opts)
+
+    send(self(), "clear_flash")
+
+    {:noreply, new_sock}
   end
 
+  # default event handler - for debugging
   def handle_event(target, data, socket) do
     IO.inspect(target, label: "TARGET")
     IO.inspect(data, label: "DATA")
@@ -294,6 +308,11 @@ defmodule DomoWeb.WlogLive do
   end
 
   # ----- message handlers
+  #
+  def handle_info("clear_flash", socket) do
+    Process.sleep(1500)
+    {:noreply, clear_flash(socket, :info)}
+  end
 
   def handle_info({"tick", secs}, socket) do
     oldklas = socket.assigns.sec_klas
@@ -333,7 +352,8 @@ defmodule DomoWeb.WlogLive do
   end
 
   def get_tz(socket) do
-    Phoenix.LiveView.get_connect_params(socket)["tz"] || "Etc/UTC"
+    # Phoenix.LiveView.get_connect_params(socket)["tz"] || "Etc/UTC"
+    Phoenix.LiveView.get_connect_params(socket)["tz"] || "America/Los_Angeles"
   end
 
   def sec_to_str(secs) when secs < 0 do

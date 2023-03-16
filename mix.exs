@@ -67,6 +67,8 @@ defmodule Domo.MixProject do
       {:swoosh, "~> 1.3"},
       {:finch, "~> 0.13"},
       {:jason, "~> 1.2"},
+      # TimeZones
+      {:tz, "~> 0.24.0"},
     ]
   end
 

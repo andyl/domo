@@ -2,14 +2,8 @@
 
 ## Roadmap
 
-Fixes: Validation and Saving 
-- [ ] Fix Broken Tests 
-- [ ] Fix field erasure when changing fields 
-- [ ] Fix flow when saving records - use a flash message
-
-Fixes: Features 
-- [ ] Time in local time 
-- [ ] Have a status:"TRASHED" instead of deleting items
+New Features 
+- [ ] Have a status "TRASHED" instead of deleting items
 - [ ] Have a trash folder 
 - [ ] Be able to empty trash 
 - [ ] Export periods in CSV 
@@ -17,6 +11,7 @@ Fixes: Features
 UI 
 - [ ] Style form with Tailwind 
 - [ ] Styling for narrow devices
+- [ ] Add nested styling 
 
 Keyboard Nav 
 - [ ] j/k -> up/down 
@@ -247,4 +242,10 @@ Use SVG (HeroIcons) as favicon
 - https://css-tricks.com/svg-favicons-and-all-the-fun-things-we-can-do-with-them/
 - https://medium.com/swlh/are-you-using-svg-favicons-yet-a-guide-for-modern-browsers-836a6aace3df
 - https://www.youtube.com/watch?v=RO31yOt6QsU
+
+Fixes: Validation and Saving 
+- [x] Fix Broken Tests 
+- [x] Fix field erasure when changing fields 
+- [x] Fix flow when saving records - use a flash message
+- [x] Time in local time 
 
