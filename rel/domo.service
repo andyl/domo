@@ -1,0 +1,20 @@
+[Unit]
+Description=Domo
+After=network.target
+
+[Service]
+Type=simple
+User=aleak
+Group=aleak
+WorkingDirectory=/home/aleak
+ExecStart=/bin/bash --login -c 'source /home/aleak/.bashrc; cd /home/aleak; PHX_SERVER=true /home/aleak/src/domo/_build/dev/rel/domo/bin/domo start'
+Restart=on-failure
+RestartSec=5
+Environment=PORT=4020
+Environment=LANG=en_US.UTF-8
+SyslogIdentifier=domo
+RemainAfterExit=no
+
+[Install]
+WantedBy=multi-user.target
+
