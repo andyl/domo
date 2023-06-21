@@ -93,7 +93,19 @@ defmodule Domo.Counter do
   # ----- helpers
 
   defp alert do
-    Task.async(fn -> System.cmd("play", ["gong", "&"]) ; Process.sleep(1000); end)
+    div = "============================================================"
+    IO.puts(div)
+    IO.inspect(System.cmd("whoami", []))
+    IO.inspect(System.cmd("ruby", ["-v"]))
+    IO.inspect(System.fetch_env("PATH"))
+    cmd = fn ->
+      System.cmd("aplay", ~w(/home/aleak/util/code_util/data/sound/gong.wav))
+      |> IO.inspect()
+      Process.sleep(1000)
+      IO.puts(div)
+    end
+    Task.async(cmd)
+    IO.puts(div)
   end
 
   defp broadcast(userid, secs) do
