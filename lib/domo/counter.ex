@@ -85,10 +85,15 @@ defmodule Domo.Counter do
     {:reply, :ok, new_state}
   end
 
+  def handle_info(msg, state) do
+    IO.inspect(msg, label: "COUNTER HANDLE INFO")
+    {:noreply, state}
+  end
+
   # ----- helpers
 
   defp alert do
-    Task.async(fn -> System.cmd("play", ["ring", "&"]) ; Process.sleep(1000); end)
+    Task.async(fn -> System.cmd("play", ["gong", "&"]) ; Process.sleep(1000); end)
   end
 
   defp broadcast(userid, secs) do
