@@ -7,6 +7,7 @@ New Features
 - [ ] Have a trash folder 
 - [ ] Be able to empty trash 
 - [ ] Export periods in CSV 
+- [ ] [[timeblocking]]
 
 UI 
 - [ ] Style form with Tailwind 
